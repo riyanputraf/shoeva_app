@@ -1,0 +1,2 @@
+# shamo_app
+ 
