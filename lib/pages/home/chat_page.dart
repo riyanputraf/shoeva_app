@@ -95,7 +95,6 @@ class ChatPage extends StatelessWidget {
           ),
           children: [
             ChatTile(),
-            ChatTile(),
           ],
         ),
       ),
