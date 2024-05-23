@@ -7,6 +7,7 @@ Color primaryColor = Color(0xff6C5ECF);
 Color secondaryColor = Color(0xff38ABBE);
 Color alertColor = Color(0xffED6363);
 Color priceColor = Color(0xff2C96F1);
+Color blackColor = Color(0xff2E2E2E);
 Color transparentColor = Colors.transparent;
 
 Color bgColor1 = Color(0xff1F1D2B);
@@ -18,25 +19,28 @@ Color primaryTextColor = Color(0xffF1F0F2);
 Color secondaryTextColor = Color(0xff999999);
 Color subtitleTextColor = Color(0xff504F5E);
 
-
 TextStyle primaryTextStyle = GoogleFonts.poppins(
-  color: primaryTextColor
+  color: primaryTextColor,
 );
 
 TextStyle secondaryTextStyle = GoogleFonts.poppins(
-  color: secondaryTextColor
+  color: secondaryTextColor,
 );
 
 TextStyle subtitleTextStyle = GoogleFonts.poppins(
-  color: subtitleTextColor
+  color: subtitleTextColor,
 );
 
 TextStyle priceTextStyle = GoogleFonts.poppins(
-    color: priceColor
+  color: priceColor,
+);
+
+TextStyle blackTextStyle = GoogleFonts.poppins(
+  color: blackColor,
 );
 
 TextStyle purpleTextStyle = GoogleFonts.poppins(
-    color: primaryColor
+  color: primaryColor,
 );
 
 FontWeight light = FontWeight.w300;
@@ -44,9 +48,3 @@ FontWeight regular = FontWeight.w400;
 FontWeight medium = FontWeight.w500;
 FontWeight semibold = FontWeight.w600;
 FontWeight bold = FontWeight.w700;
-
-
-
-
-
-
