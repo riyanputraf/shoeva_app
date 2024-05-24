@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shamo_app/theme.dart';
+import 'package:shamo_app/widgets/chat_buble.dart';
 
 class DetailChatPage extends StatelessWidget {
   const DetailChatPage({super.key});
@@ -108,6 +109,7 @@ class DetailChatPage extends StatelessWidget {
                     ),
                     child: Center(
                       child: TextFormField(
+                        style: primaryTextStyle,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Type Message...',
                           hintStyle: subtitleTextStyle,
@@ -127,6 +129,24 @@ class DetailChatPage extends StatelessWidget {
             ),
           ],
         ),
+      );
+    }
+
+    Widget content() {
+      return ListView(
+        padding: EdgeInsets.symmetric(
+          horizontal: defaultMargin,
+        ),
+        children: [
+          ChatBubble(
+            text: 'Hi, This item is still available?',
+            isSender: true,
+          ),
+          ChatBubble(
+            text: 'Good night, This item is only available in size 42 and 43',
+            isSender: false,
+          ),
+        ],
       );
     }
 
@@ -170,6 +190,7 @@ class DetailChatPage extends StatelessWidget {
         preferredSize: Size.fromHeight(70),
       ),
       bottomNavigationBar: chatInput(),
+      body: content(),
     );
   }
 }
