@@ -112,8 +112,6 @@ class ChatBubble extends StatelessWidget {
       );
     }
 
-
-
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(
