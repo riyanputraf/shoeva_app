@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/widgets/wishlist_card.dart';
 
 import '../../theme.dart';
 
@@ -7,7 +8,6 @@ class WishlistPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     Widget header() {
       return AppBar(
         backgroundColor: bgColor1,
@@ -87,11 +87,29 @@ class WishlistPage extends StatelessWidget {
       );
     }
 
+    Widget content() {
+      return Expanded(
+        child: Container(
+          color: bgColor3,
+          child: ListView(
+            padding: EdgeInsets.symmetric(
+              horizontal: 30,
+            ),
+            children: [
+              WishlistCard(),
+              WishlistCard(),
+              WishlistCard(),
+            ],
+          ),
+        ),
+      );
+    }
 
     return Column(
       children: [
         header(),
-        emptyWishList(),
+        // emptyWishList(),
+        content(),
       ],
     );
   }
