@@ -54,7 +54,92 @@ class CheckoutPage extends StatelessWidget {
               ],
             ),
           ),
-          Container(),
+
+          /// Note address detail
+          Container(
+            margin: EdgeInsets.only(
+              top: defaultMargin,
+            ),
+            decoration: BoxDecoration(
+              color: bgColor4,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Address Details',
+                  style: primaryTextStyle.copyWith(
+                    fontWeight: medium,
+                    fontSize: 16,
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Image.asset(
+                          'assets/icon_store_location.png',
+                          width: 40,
+                        ),
+                        Image.asset(
+                          'assets/icon_line.png',
+                          height: defaultMargin,
+                        ),
+                        Image.asset(
+                          'assets/icon_your_address.png',
+                          width: 40,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Store Location',
+                            style: secondaryTextStyle.copyWith(
+                              fontWeight: light,
+                              fontSize: 12,
+                            ),
+                          ),
+                          Text(
+                            'Adidas Core Location',
+                            style: primaryTextStyle.copyWith(
+                              fontWeight: medium,
+                              fontSize: 14,
+                            ),
+                          ),
+                          SizedBox(height: defaultMargin,),
+                          Text(
+                            'Your Address',
+                            style: secondaryTextStyle.copyWith(
+                              fontWeight: light,
+                              fontSize: 12,
+                            ),
+                          ),
+                          Text(
+                            'Marsemoon',
+                            style: primaryTextStyle.copyWith(
+                              fontWeight: medium,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
         ],
       );
     }
