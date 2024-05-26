@@ -87,6 +87,7 @@ class EditProfilePage extends StatelessWidget {
         ),
       );
     }
+
     Widget emailInput() {
       return Container(
         margin: EdgeInsets.only(top: defaultMargin),
@@ -128,10 +129,11 @@ class EditProfilePage extends StatelessWidget {
               height: 100,
               margin: EdgeInsets.only(top: defaultMargin),
               decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage('assets/image_profile.png'),
-                  )),
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage('assets/image_profile.png'),
+                ),
+              ),
             ),
             nameInput(),
             usernameInput(),
