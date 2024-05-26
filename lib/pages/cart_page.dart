@@ -145,7 +145,9 @@ class CartPage extends StatelessWidget {
               height: 50,
               margin: EdgeInsets.symmetric(horizontal: defaultMargin),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/checkout');
+                },
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.symmetric(
                     horizontal: 20,
