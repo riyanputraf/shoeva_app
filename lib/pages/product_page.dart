@@ -16,6 +16,17 @@ class _ProductPageState extends State<ProductPage> {
     'assets/image_shoes.png',
   ];
 
+  List familiarShoes = [
+    'assets/image_shoes.png',
+    'assets/image_shoes.png',
+    'assets/image_shoes.png',
+    'assets/image_shoes.png',
+    'assets/image_shoes.png',
+    'assets/image_shoes.png',
+    'assets/image_shoes.png',
+    'assets/image_shoes.png',
+  ];
+
   int currentIndex = 0;
 
   @override
@@ -29,6 +40,17 @@ class _ProductPageState extends State<ProductPage> {
           borderRadius: BorderRadius.circular(10),
           color: currentIndex == index ? primaryColor : Color(0xffC4C4C4),
         ),
+      );
+    }
+
+    Widget familiarShoesCard(String imageUrl) {
+      return Container(
+        width: 54,
+        height: 54,
+        margin: EdgeInsets.only(right: 16),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+            image: DecorationImage(image: AssetImage(imageUrl))),
       );
     }
 
@@ -93,6 +115,8 @@ class _ProductPageState extends State<ProductPage> {
     }
 
     Widget content() {
+      int index = -1;
+
       return Container(
         width: double.infinity,
         margin: EdgeInsets.only(top: 17),
@@ -192,7 +216,9 @@ class _ProductPageState extends State<ProductPage> {
                       fontSize: 14,
                     ),
                   ),
-                  SizedBox(height: 12,),
+                  SizedBox(
+                    height: 12,
+                  ),
                   Text(
                     'Unpaved trails and mixed surfaces are easy when you have the traction and support you need. Casual enough for the daily commute.',
                     style: subtitleTextStyle.copyWith(
@@ -201,6 +227,42 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                     textAlign: TextAlign.justify,
                   ),
+                ],
+              ),
+            ),
+
+            /// Note Familiar Shoes Product
+            Container(
+              margin: EdgeInsets.only(top: 30),
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+                    child: Text(
+                      'Familiar Shoes',
+                      style: primaryTextStyle.copyWith(
+                        fontWeight: medium,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: familiarShoes.map((image) {
+                        index++;
+                        return Container(
+                          margin: EdgeInsets.only(left: index == 0 ? defaultMargin : 0),
+                          child: familiarShoesCard(image),
+                        );
+                      }).toList(),
+                    ),
+                  )
                 ],
               ),
             ),
