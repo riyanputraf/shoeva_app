@@ -34,6 +34,86 @@ class EditProfilePage extends StatelessWidget {
       );
     }
 
+    Widget nameInput() {
+      return Container(
+        margin: EdgeInsets.only(top: defaultMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Name',
+              style: secondaryTextStyle.copyWith(
+                fontSize: 13,
+              ),
+            ),
+            TextFormField(
+              style: primaryTextStyle,
+              decoration: InputDecoration(
+                  hintText: 'Riyan Putra F',
+                  hintStyle: primaryTextStyle,
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                    color: subtitleTextColor,
+                  ))),
+            )
+          ],
+        ),
+      );
+    }
+
+    Widget usernameInput() {
+      return Container(
+        margin: EdgeInsets.only(top: defaultMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Username',
+              style: secondaryTextStyle.copyWith(
+                fontSize: 13,
+              ),
+            ),
+            TextFormField(
+              style: primaryTextStyle,
+              decoration: InputDecoration(
+                  hintText: '@riyanputra',
+                  hintStyle: primaryTextStyle,
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                    color: subtitleTextColor,
+                  ))),
+            )
+          ],
+        ),
+      );
+    }
+    Widget emailInput() {
+      return Container(
+        margin: EdgeInsets.only(top: defaultMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Email Address',
+              style: secondaryTextStyle.copyWith(
+                fontSize: 13,
+              ),
+            ),
+            TextFormField(
+              style: primaryTextStyle,
+              decoration: InputDecoration(
+                  hintText: 'riyan@gmail.com',
+                  hintStyle: primaryTextStyle,
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                    color: subtitleTextColor,
+                  ))),
+            )
+          ],
+        ),
+      );
+    }
+
     Widget content() {
       return Container(
         padding: EdgeInsets.symmetric(
@@ -52,7 +132,10 @@ class EditProfilePage extends StatelessWidget {
                   image: DecorationImage(
                     image: AssetImage('assets/image_profile.png'),
                   )),
-            )
+            ),
+            nameInput(),
+            usernameInput(),
+            emailInput(),
           ],
         ),
       );
@@ -62,6 +145,7 @@ class EditProfilePage extends StatelessWidget {
       backgroundColor: bgColor3,
       appBar: header(),
       body: content(),
+      resizeToAvoidBottomInset: false,
     );
   }
 }
