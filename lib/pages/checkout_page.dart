@@ -226,12 +226,16 @@ class CheckoutPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 12,),
+                SizedBox(
+                  height: 12,
+                ),
                 Divider(
                   thickness: 1,
                   color: subtitleTextColor,
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -252,6 +256,40 @@ class CheckoutPage extends StatelessWidget {
                   ],
                 )
               ],
+            ),
+          ),
+
+          /// Note checkout button
+          SizedBox(
+            height: defaultMargin,
+          ),
+          Divider(
+            thickness: 1,
+            color: subtitleTextColor,
+          ),
+          Container(
+            height: 50,
+            width: double.infinity,
+            margin: EdgeInsets.symmetric(
+              vertical: defaultMargin,
+            ),
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                'Checkout Now',
+                style: primaryTextStyle.copyWith(
+                  fontWeight: semibold,
+                  fontSize: 16,
+                ),
+              ),
+              style: TextButton.styleFrom(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 13,
+                  ),
+                  backgroundColor: primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  )),
             ),
           ),
         ],
