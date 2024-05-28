@@ -3,13 +3,26 @@ import 'package:shamo_app/providers/auth_provider.dart';
 import 'package:shamo_app/theme.dart';
 import 'package:provider/provider.dart';
 
-class SignUpPage extends StatelessWidget {
+import '../widgets/loading_button.dart';
+
+class SignUpPage extends StatefulWidget {
   SignUpPage({super.key});
 
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   TextEditingController nameController = TextEditingController(text: '');
+
   TextEditingController usernameController = TextEditingController(text: '');
+
   TextEditingController emailController = TextEditingController(text: '');
+
   TextEditingController passwordController = TextEditingController(text: '');
+
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +30,33 @@ class SignUpPage extends StatelessWidget {
 
     /// Ada kemungkinan refactor
     handleSignUp() async {
+
+      setState(() {
+        isLoading = true;
+      });
+
       if (await authProvider.register(
           name: nameController.text,
           username: usernameController.text,
           password: passwordController.text,
           email: emailController.text)) {
+
         Navigator.pushNamed(context, '/home');
+      } else{
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Register Failed',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
       }
+
+      setState(() {
+        isLoading = false;
+      });
     }
 
     Widget header() {
@@ -336,7 +369,7 @@ class SignUpPage extends StatelessWidget {
                 usernameInput(),
                 emailInput(),
                 passwordInput(),
-                signUpButton(),
+                isLoading ? LoadingButton() : signUpButton(),
                 Spacer(),
                 footer(),
               ],
