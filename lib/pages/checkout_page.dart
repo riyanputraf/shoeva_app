@@ -34,6 +34,7 @@ class CheckoutPage extends StatelessWidget {
           horizontal: defaultMargin,
         ),
         children: [
+
           /// NOTE: List Item
           Container(
             margin: EdgeInsets.only(
@@ -274,7 +275,10 @@ class CheckoutPage extends StatelessWidget {
               vertical: defaultMargin,
             ),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/checkout-success', (route) => false);
+              },
               child: Text(
                 'Checkout Now',
                 style: primaryTextStyle.copyWith(
