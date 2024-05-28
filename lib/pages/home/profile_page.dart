@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo_app/theme.dart';
+
+import '../../models/user_model.dart';
+import '../../providers/auth_provider.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    UserModel user = authProvider.user;
+
     Widget header() {
       return AppBar(
         backgroundColor: bgColor1,
@@ -19,10 +27,20 @@ class ProfilePage extends StatelessWidget {
             child: Row(
               children: [
                 ClipOval(
-                  child: Image.asset(
-                    'assets/image_profile.png',
-                    width: 64,
-                  ),
+                  child: user.profilePhotoUrl == null ||
+                          user.profilePhotoUrl.isEmpty
+                      ? Image.asset(
+                          'assets/image_profile.png',
+                          width: 64,
+                          height: 64,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.network(
+                          user.profilePhotoUrl,
+                          width: 64,
+                          height: 64,
+                          fit: BoxFit.cover,
+                        ),
                 ),
                 SizedBox(
                   width: 16,
@@ -32,14 +50,14 @@ class ProfilePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hello, Riyan',
+                        'Hello, ${user.name}',
                         style: primaryTextStyle.copyWith(
                           fontWeight: semibold,
                           fontSize: 24,
                         ),
                       ),
                       Text(
-                        '@riyanputraf',
+                        '@${user.username}',
                         style: subtitleTextStyle.copyWith(
                           fontWeight: regular,
                           fontSize: 16,
@@ -110,7 +128,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.pushNamed(context, '/edit-profile');
                 },
                 child: menuItem('Edit Profile'),
