@@ -200,6 +200,39 @@ class HomePage extends StatelessWidget {
       );
     }
 
+
+    /// Widge popularProducts menggunakan Consumer
+    // Widget popularProducts() {
+    //   return Container(
+    //     margin: EdgeInsets.only(
+    //       top: 14,
+    //     ),
+    //     child: SingleChildScrollView(
+    //       scrollDirection: Axis.horizontal,
+    //       child: Row(
+    //         children: [
+    //           SizedBox(
+    //             width: defaultMargin,
+    //           ),
+    //           Consumer<ProductProvider>(
+    //             builder: (context, productProvider, child) {
+    //               return Row(
+    //                 children: productProvider.products
+    //                     .map(
+    //                       (product) => ProductCard(
+    //                     product: product,
+    //                   ),
+    //                 )
+    //                     .toList(),
+    //               );
+    //             },
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   );
+    // }
+
     Widget popularProducts() {
       return Container(
         margin: EdgeInsets.only(
