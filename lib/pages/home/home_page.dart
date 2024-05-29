@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo_app/models/user_model.dart';
 import 'package:shamo_app/providers/auth_provider.dart';
+import 'package:shamo_app/providers/product_provider.dart';
 import 'package:shamo_app/theme.dart';
 import 'package:shamo_app/widgets/product_card.dart';
 import 'package:shamo_app/widgets/product_tile.dart';
@@ -9,15 +10,12 @@ import 'package:shamo_app/widgets/product_tile.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     UserModel user = authProvider.user;
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
 
     Widget header() {
       return Container(
@@ -55,9 +53,10 @@ class HomePage extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: (user.profilePhotoUrl == null || user.profilePhotoUrl.isEmpty)
-                        ? AssetImage('assets/image_profile.png')
-                        : NetworkImage(user.profilePhotoUrl) as ImageProvider,
+                  image: (user.profilePhotoUrl == null ||
+                          user.profilePhotoUrl.isEmpty)
+                      ? AssetImage('assets/image_profile.png')
+                      : NetworkImage(user.profilePhotoUrl) as ImageProvider,
                 ),
               ),
             )
@@ -214,11 +213,18 @@ class HomePage extends StatelessWidget {
                 width: defaultMargin,
               ),
               Row(
-                children: [
-                  ProductCard(),
-                  ProductCard(),
-                  ProductCard(),
-                ],
+                children: productProvider.products
+                    .map(
+                      (product) => ProductCard(
+                        product: product,
+                      ),
+                    )
+                    .toList(),
+
+                /// Jika API belum jadi uncomment ini
+                // ProductCard(),
+                // ProductCard(),
+                // ProductCard(),
               )
             ],
           ),
@@ -258,7 +264,6 @@ class HomePage extends StatelessWidget {
         ),
       );
     }
-
 
     return ListView(
       children: [
