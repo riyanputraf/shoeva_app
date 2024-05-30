@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shamo_app/theme.dart';
 
@@ -8,10 +9,25 @@ class ProductCard extends StatelessWidget {
 
   final ProductModel product;
 
+  String updateLocalhostUrl(String url) {
+    if (url.contains('localhost')) {
+      return url.replaceAll('localhost', '10.0.2.2');
+    } else if (url.contains('127.0.0.1')) {
+      return url.replaceAll('127.0.0.1', '10.0.2.2');
+    }
+    return url;
+  }
+
   @override
   Widget build(BuildContext context) {
+    String imageUrl = updateLocalhostUrl(product.galleries[0].url);
+
+    // Print the URL to the console for debugging
+    print(imageUrl);
+    print('Ini galleris: ' + product.galleries[0].url);
+
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.pushNamed(context, '/product');
       },
       child: Container(
@@ -30,12 +46,27 @@ class ProductCard extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            Image.network(
-              product.galleries[0].url,
+
+            CachedNetworkImage(
+              imageUrl: imageUrl,
               width: 215,
               height: 150,
               fit: BoxFit.cover,
+              placeholder: (context, url) => Center(
+                child: CircularProgressIndicator(),
+              ),
+              errorWidget: (context, url, error) => Icon(
+                Icons.image_not_supported,
+                size: 150,
+                color: Colors.grey,
+              ),
             ),
+            // Image.network(
+            //   imageUrl,
+            //   width: 215,
+            //   height: 150,
+            //   fit: BoxFit.cover,
+            // ),
             /// Jika API belum selesai uncomment ini
             // Image.asset(
             //   'assets/image_shoes.png',
@@ -52,6 +83,7 @@ class ProductCard extends StatelessWidget {
                 children: [
                   Text(
                     product.category.name,
+
                     /// jika api belum selesai
                     // 'Hiking',
                     style: secondaryTextStyle.copyWith(
@@ -64,6 +96,7 @@ class ProductCard extends StatelessWidget {
                   ),
                   Text(
                     product.name,
+
                     /// jika api blm selesai
                     // 'COURT VISION 2.0',
                     style: blackTextStyle.copyWith(
@@ -78,6 +111,7 @@ class ProductCard extends StatelessWidget {
                   ),
                   Text(
                     '\$${product.price}',
+
                     /// jika api belum selesai
                     // '\$ 58,67',
                     style: priceTextStyle.copyWith(

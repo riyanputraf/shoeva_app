@@ -3,8 +3,20 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shamo_app/models/product_model.dart';
 
+import '../models/gallery_model.dart';
+
 class ProductService {
-  String baseUrl = 'URL_API';
+  String baseUrl = 'http://10.0.2.2:8000/api';
+
+  String updateLocalhostUrl(String url) {
+    if (url.contains('localhost')) {
+      return url.replaceAll('localhost', '10.0.2.2');
+    } else if (url.contains('127.0.0.1')) {
+      return url.replaceAll('127.0.0.1', '10.0.2.2');
+    }
+    return url;
+  }
+
 
   Future<List<ProductModel>> getProducts() async {
     var url = '$baseUrl/products';
@@ -19,7 +31,19 @@ class ProductService {
       List<ProductModel> products = [];
 
       for (var item in data) {
+
+        /// jika menjalankan di localhost pakai metode ini
+        // List<GalleryModel> galleries = [];
+        // for (var gallery in item['galleries']) {
+        //   gallery['url'] = updateLocalhostUrl(gallery['url']);
+        //   galleries.add(GalleryModel.fromJson(gallery));
+        // }
+        // item['galleries'] = galleries;
+
+        /// jika tidak menjalankan di localhost cukup pakai ini saja
         products.add(ProductModel.fromJson(item));
+        print("ini Product Service:");
+        print(products);
       }
 
       return products;

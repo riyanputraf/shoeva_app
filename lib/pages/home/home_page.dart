@@ -53,10 +53,7 @@ class HomePage extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: (user.profilePhotoUrl == null ||
-                          user.profilePhotoUrl.isEmpty)
-                      ? AssetImage('assets/image_profile.png')
-                      : NetworkImage(user.profilePhotoUrl) as ImageProvider,
+                  image: AssetImage('assets/image_profile.png'),
                 ),
               ),
             )
@@ -200,7 +197,6 @@ class HomePage extends StatelessWidget {
       );
     }
 
-
     /// Widge popularProducts menggunakan Consumer
     // Widget popularProducts() {
     //   return Container(
@@ -288,12 +284,11 @@ class HomePage extends StatelessWidget {
           top: 14,
         ),
         child: Column(
-          children: [
-            ProductTile(),
-            ProductTile(),
-            ProductTile(),
-            ProductTile(),
-          ],
+          children: productProvider.products
+              .map(
+                (product) => ProductTile(product: product),
+              )
+              .toList(),
         ),
       );
     }
