@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo_app/providers/wishlist_provider.dart';
 import 'package:shamo_app/theme.dart';
 
 import '../models/product_model.dart';
@@ -33,7 +35,6 @@ class _ProductPageState extends State<ProductPage> {
   ];
 
   int currentIndex = 0;
-  bool isWishlist = false;
 
   String updateLocalhostUrl(String url) {
     if (url.contains('localhost')) {
@@ -48,6 +49,8 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
 
     String imageUrl = updateLocalhostUrl(widget.product.galleries[0].url);
+
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
 
     Future<void> showSuccesDialog() async {
       return showDialog(
@@ -262,11 +265,9 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      setState(() {
-                        isWishlist = !isWishlist;
-                      });
+                      wishlistProvider.setProduct(widget.product);
 
-                      if (isWishlist) {
+                      if (wishlistProvider.isWishlist(widget.product)) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             backgroundColor: secondaryColor,
@@ -289,7 +290,7 @@ class _ProductPageState extends State<ProductPage> {
                       }
                     },
                     child: Image.asset(
-                      isWishlist
+                      wishlistProvider.isWishlist(widget.product)
                           ? 'assets/button_wishlist_blue.png'
                           : 'assets/button_wishlist.png',
                       width: 46,
