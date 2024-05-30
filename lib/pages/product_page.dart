@@ -1,9 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shamo_app/theme.dart';
 
+import '../models/product_model.dart';
+
 class ProductPage extends StatefulWidget {
-  ProductPage({super.key});
+  ProductPage({super.key, required this.product});
+
+  final ProductModel product;
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -30,8 +35,20 @@ class _ProductPageState extends State<ProductPage> {
   int currentIndex = 0;
   bool isWishlist = false;
 
+  String updateLocalhostUrl(String url) {
+    if (url.contains('localhost')) {
+      return url.replaceAll('localhost', '10.0.2.2');
+    } else if (url.contains('127.0.0.1')) {
+      return url.replaceAll('127.0.0.1', '10.0.2.2');
+    }
+    return url;
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    String imageUrl = updateLocalhostUrl(widget.product.galleries[0].url);
+
     Future<void> showSuccesDialog() async {
       return showDialog(
         context: context,
@@ -161,13 +178,20 @@ class _ProductPageState extends State<ProductPage> {
             ),
           ),
           CarouselSlider(
-            items: images
+            items: widget.product.galleries
                 .map(
-                  (image) => Image.asset(
-                    image,
-                    width: MediaQuery.of(context).size.width,
-                    height: 310,
+                  (image) => CachedNetworkImage(
+                    imageUrl: updateLocalhostUrl(image.url),
+                    width: 310,
                     fit: BoxFit.cover,
+                    placeholder: (context, url) => Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) => Icon(
+                      Icons.image_not_supported,
+                      size: 150,
+                      color: Colors.grey,
+                    ),
                   ),
                 )
                 .toList(),
@@ -184,7 +208,7 @@ class _ProductPageState extends State<ProductPage> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: images.map((e) {
+            children: widget.product.galleries.map((e) {
               index++;
               return indicator(index);
             }).toList(),
@@ -221,14 +245,14 @@ class _ProductPageState extends State<ProductPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'TERREX URBAN LOW',
+                          '${widget.product.name}',
                           style: primaryTextStyle.copyWith(
                             fontWeight: semibold,
                             fontSize: 18,
                           ),
                         ),
                         Text(
-                          'Hiking',
+                          '${widget.product.category}',
                           style: secondaryTextStyle.copyWith(
                             fontSize: 12,
                           ),
@@ -298,7 +322,7 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ),
                   Text(
-                    '\$143,98',
+                    '\$${widget.product.price}',
                     style: priceTextStyle.copyWith(
                       fontWeight: semibold,
                       fontSize: 16,
@@ -330,7 +354,7 @@ class _ProductPageState extends State<ProductPage> {
                     height: 12,
                   ),
                   Text(
-                    'Unpaved trails and mixed surfaces are easy when you have the traction and support you need. Casual enough for the daily commute.',
+                    '${widget.product.description}',
                     style: subtitleTextStyle.copyWith(
                       fontWeight: light,
                       fontSize: 14,
