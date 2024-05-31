@@ -13,6 +13,7 @@ import 'package:shamo_app/pages/sign_in_page.dart';
 import 'package:shamo_app/pages/sign_up_page.dart';
 import 'package:shamo_app/pages/splash_page.dart';
 import 'package:shamo_app/providers/auth_provider.dart';
+import 'package:shamo_app/providers/cart_provider.dart';
 import 'package:shamo_app/providers/product_provider.dart';
 import 'package:shamo_app/providers/wishlist_provider.dart';
 
@@ -36,28 +37,30 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => WishlistProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
+        ),
       ],
       child: ScreenUtilInit(
-        designSize: Size(375, 812),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (context, child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            routes: {
-              '/': (context) => SplashPage(),
-              '/sign-in': (context) => SignInPage(),
-              '/sign-up': (context) => SignUpPage(),
-              '/home': (context) => MainPage(),
-              '/detail-chat': (context) => DetailChatPage(),
-              '/edit-profile': (context) => EditProfilePage(),
-              '/cart': (context) => CartPage(),
-              '/checkout': (context) => CheckoutPage(),
-              '/checkout-success': (context) => CheckoutSuccessPage(),
-            },
-          );
-        }
-      ),
+          designSize: Size(375, 812),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (context, child) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              routes: {
+                '/': (context) => SplashPage(),
+                '/sign-in': (context) => SignInPage(),
+                '/sign-up': (context) => SignUpPage(),
+                '/home': (context) => MainPage(),
+                '/detail-chat': (context) => DetailChatPage(),
+                '/edit-profile': (context) => EditProfilePage(),
+                '/cart': (context) => CartPage(),
+                '/checkout': (context) => CheckoutPage(),
+                '/checkout-success': (context) => CheckoutSuccessPage(),
+              },
+            );
+          }),
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo_app/providers/cart_provider.dart';
 import 'package:shamo_app/widgets/cart_card.dart';
 
 import '../theme.dart';
@@ -98,93 +100,115 @@ class CartPage extends StatelessWidget {
     }
 
     Widget content() {
-      return ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: defaultMargin,
-        ),
-        children: [
-          CartCard(),
-          CartCard(),
-        ],
+      return Consumer<CartProvider>(
+        builder: (context, cartProvider, child) {
+          if (cartProvider.carts.isEmpty) {
+            return emptyCart();
+          } else {
+            return ListView(
+              padding: EdgeInsets.symmetric(
+                horizontal: defaultMargin.w,
+              ),
+              children: cartProvider.carts
+                  .map(
+                    (cart) => CartCard(
+                      cart: cart,
+                    ),
+                  )
+                  .toList(),
+            );
+          }
+        },
       );
     }
 
     Widget customBottomNav() {
-      return Container(
-        height: 180.h,
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: defaultMargin.w,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      return Consumer<CartProvider>(
+        builder: (context, cartProvider, child) {
+          if (cartProvider.carts.isEmpty) {
+            return SizedBox();
+          } else {
+            return Container(
+              height: 180.h,
+              child: Column(
                 children: [
-                  Text(
-                    'Subtotal',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 14.sp,
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: defaultMargin.w,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Subtotal',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 14.sp,
+                          ),
+                        ),
+                        Text(
+                          '\$${cartProvider.totalPrice()}',
+                          style: priceTextStyle.copyWith(
+                            fontWeight: semibold,
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Text(
-                    '\$287,96',
-                    style: priceTextStyle.copyWith(
-                      fontWeight: semibold,
-                      fontSize: 16.sp,
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  Divider(
+                    thickness: 0.5,
+                    color: subtitleTextColor,
+                  ),
+                  SizedBox(
+                    height: 30.h,
+                  ),
+                  Container(
+                    height: 50.h,
+                    margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/checkout');
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20.w,
+                          vertical: 13.h,
+                        ),
+                        backgroundColor: primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Continue to Checkout',
+                            style: primaryTextStyle.copyWith(
+                              fontWeight: semibold,
+                              fontSize: 16.sp,
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward,
+                            color: primaryTextColor,
+                            size: 24.w,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
-            ),
-            SizedBox(
-              height: 12.h,
-            ),
-            Divider(
-              thickness: 0.5,
-              color: subtitleTextColor,
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            Container(
-              height: 50.h,
-              margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/checkout');
-                },
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.w,
-                    vertical: 13.h,
-                  ),
-                  backgroundColor: primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Continue to Checkout',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: semibold,
-                        fontSize: 16.sp,
-                      ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward,
-                      color: primaryTextColor,
-                      size: 24.w,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+            );
+          }
+
+
+        },
+
       );
     }
 

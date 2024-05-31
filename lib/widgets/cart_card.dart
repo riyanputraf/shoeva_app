@@ -1,12 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo_app/models/cart_model.dart';
+import 'package:shamo_app/providers/cart_provider.dart';
 import 'package:shamo_app/theme.dart';
+import 'package:shamo_app/utils/url_util.dart';
 
 class CartCard extends StatelessWidget {
-  const CartCard({super.key});
+  CartCard({super.key, required this.cart});
+
+  final CartModel cart;
 
   @override
   Widget build(BuildContext context) {
+
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(
@@ -25,12 +35,20 @@ class CartCard extends StatelessWidget {
           Row(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  'assets/image_shoes.png',
-                  width: 60.w,
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(12),
+                  child: CachedNetworkImage(
+                    imageUrl: updateLocalhostUrl(cart.product.galleries[0].url),
+                    width: 60.w,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) => Icon(
+                      Icons.image_not_supported,
+                      size: 150.w,
+                      color: Colors.grey,
+                    ),
+                  )),
               SizedBox(
                 width: 12.w,
               ),
@@ -39,14 +57,14 @@ class CartCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Terrex Urban Low',
+                      '${cart.product.name}',
                       style: primaryTextStyle.copyWith(
                         fontWeight: semibold,
                         fontSize: 14.sp,
                       ),
                     ),
                     Text(
-                      '\$143,98',
+                      '\$${cart.product.price}',
                       style: priceTextStyle.copyWith(
                         fontWeight: regular,
                         fontSize: 14.sp,
@@ -57,15 +75,20 @@ class CartCard extends StatelessWidget {
               ),
               Column(
                 children: [
-                  Image.asset(
-                    'assets/button_add.png',
-                    width: 16.w,
+                  GestureDetector(
+                    onTap: (){
+                      cartProvider.addQuantity(cart.id);
+                    },
+                    child: Image.asset(
+                      'assets/button_add.png',
+                      width: 16.w,
+                    ),
                   ),
                   SizedBox(
                     height: 2.h,
                   ),
                   Text(
-                    '2',
+                    cart.quantity.toString(),
                     style: primaryTextStyle.copyWith(
                       fontWeight: medium,
                       fontSize: 14.sp,
@@ -74,9 +97,14 @@ class CartCard extends StatelessWidget {
                   SizedBox(
                     height: 2.h,
                   ),
-                  Image.asset(
-                    'assets/button_min.png',
-                    width: 16.w,
+                  GestureDetector(
+                    onTap: (){
+                      cartProvider.reduceQuantity(cart.id);
+                    },
+                    child: Image.asset(
+                      'assets/button_min.png',
+                      width: 16.w,
+                    ),
                   ),
                 ],
               ),
@@ -85,23 +113,28 @@ class CartCard extends StatelessWidget {
           SizedBox(
             height: 12.h,
           ),
-          Row(
-            children: [
-              Image.asset(
-                'assets/icon_remove.png',
-                width: 10.w,
-              ),
-              SizedBox(
-                width: 4.w,
-              ),
-              Text(
-                'Remove',
-                style: alertTextStyle.copyWith(
-                  fontWeight: light,
-                  fontSize: 12.sp,
+          GestureDetector(
+            onTap: (){
+              cartProvider.removeCart(cart.id);
+            },
+            child: Row(
+              children: [
+                Image.asset(
+                  'assets/icon_remove.png',
+                  width: 10.w,
                 ),
-              )
-            ],
+                SizedBox(
+                  width: 4.w,
+                ),
+                Text(
+                  'Remove',
+                  style: alertTextStyle.copyWith(
+                    fontWeight: light,
+                    fontSize: 12.sp,
+                  ),
+                )
+              ],
+            ),
           ),
         ],
       ),
