@@ -38,10 +38,8 @@ class _ProductPageState extends State<ProductPage> {
 
   int currentIndex = 0;
 
-
   @override
   Widget build(BuildContext context) {
-
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
 
     Future<void> showSuccesDialog() async {
@@ -65,39 +63,40 @@ class _ProductPageState extends State<ProductPage> {
                       child: Icon(
                         Icons.close,
                         color: primaryTextColor,
+                        size: 24.w,
                       ),
                     ),
                   ),
                   Image.asset(
                     'assets/icon_success.png',
-                    width: 100,
+                    width: 100.w,
                   ),
                   SizedBox(
-                    height: 12,
+                    height: 12.h,
                   ),
                   Text(
                     'Hurray :)',
                     style: primaryTextStyle.copyWith(
                       fontWeight: semibold,
-                      fontSize: 18,
+                      fontSize: 18.sp,
                     ),
                   ),
                   SizedBox(
-                    height: 12,
+                    height: 12.h,
                   ),
                   Text(
                     'Item added successfully',
                     style: secondaryTextStyle.copyWith(
                       fontWeight: regular,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 20.h,
                   ),
                   Container(
-                    width: 154,
-                    height: 44,
+                    width: 154.w,
+                    height: 44.h,
                     child: TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
@@ -109,7 +108,7 @@ class _ProductPageState extends State<ProductPage> {
                         'View My Cart',
                         style: primaryTextStyle.copyWith(
                           fontWeight: medium,
-                          fontSize: 16,
+                          fontSize: 16.sp,
                         ),
                       ),
                     ),
@@ -124,9 +123,9 @@ class _ProductPageState extends State<ProductPage> {
 
     Widget indicator(int index) {
       return Container(
-        width: currentIndex == index ? 16 : 4,
-        height: 4,
-        margin: EdgeInsets.symmetric(horizontal: 2),
+        width: currentIndex == index ? 16.w : 4.w,
+        height: 4.h,
+        margin: EdgeInsets.symmetric(horizontal: 2.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: currentIndex == index ? primaryColor : Color(0xffC4C4C4),
@@ -136,12 +135,15 @@ class _ProductPageState extends State<ProductPage> {
 
     Widget familiarShoesCard(String imageUrl) {
       return Container(
-        width: 54,
-        height: 54,
-        margin: EdgeInsets.only(right: 16),
+        width: 54.w,
+        height: 54.h,
+        margin: EdgeInsets.only(right: 16.w),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
-            image: DecorationImage(image: AssetImage(imageUrl))),
+          borderRadius: BorderRadius.circular(6),
+          image: DecorationImage(
+            image: AssetImage(imageUrl),
+          ),
+        ),
       );
     }
 
@@ -152,9 +154,9 @@ class _ProductPageState extends State<ProductPage> {
         children: [
           Container(
             margin: EdgeInsets.only(
-              top: 20,
-              left: defaultMargin,
-              right: defaultMargin,
+              top: 20.h,
+              left: defaultMargin.w,
+              right: defaultMargin.w,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -163,11 +165,15 @@ class _ProductPageState extends State<ProductPage> {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(Icons.chevron_left),
+                  child: Icon(
+                    Icons.chevron_left,
+                    size: 24.w,
+                  ),
                 ),
                 Icon(
                   Icons.shopping_bag,
                   color: bgColor1,
+                  size: 24.w,
                 )
               ],
             ),
@@ -177,14 +183,14 @@ class _ProductPageState extends State<ProductPage> {
                 .map(
                   (image) => CachedNetworkImage(
                     imageUrl: updateLocalhostUrl(image.url),
-                    width: 310,
+                    width: 310.w,
                     fit: BoxFit.cover,
                     placeholder: (context, url) => Center(
                       child: CircularProgressIndicator(),
                     ),
                     errorWidget: (context, url, error) => Icon(
                       Icons.image_not_supported,
-                      size: 150,
+                      size: 150.w,
                       color: Colors.grey,
                     ),
                   ),
@@ -199,14 +205,16 @@ class _ProductPageState extends State<ProductPage> {
                 }),
           ),
           SizedBox(
-            height: 20,
+            height: 20.h,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: widget.product.galleries.map((e) {
-              index++;
-              return indicator(index);
-            }).toList(),
+            children: widget.product.galleries.map(
+              (e) {
+                index++;
+                return indicator(index);
+              },
+            ).toList(),
           ),
         ],
       );
@@ -218,10 +226,10 @@ class _ProductPageState extends State<ProductPage> {
       return Container(
         width: double.infinity,
         height: 502.h,
-        margin: EdgeInsets.only(top: 17),
+        margin: EdgeInsets.only(top: 17.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(24),
+            top: Radius.circular(24.h),
           ),
           color: bgColor1,
         ),
@@ -230,9 +238,9 @@ class _ProductPageState extends State<ProductPage> {
             /// Note Header Content
             Container(
               margin: EdgeInsets.only(
-                top: defaultMargin,
-                left: defaultMargin,
-                right: defaultMargin,
+                top: defaultMargin.h,
+                left: defaultMargin.w,
+                right: defaultMargin.w,
               ),
               child: Row(
                 children: [
@@ -244,13 +252,13 @@ class _ProductPageState extends State<ProductPage> {
                           '${widget.product.name}',
                           style: primaryTextStyle.copyWith(
                             fontWeight: semibold,
-                            fontSize: 18,
+                            fontSize: 18.sp,
                           ),
                         ),
                         Text(
                           '${widget.product.category}',
                           style: secondaryTextStyle.copyWith(
-                            fontSize: 12,
+                            fontSize: 12.sp,
                           ),
                         ),
                       ],
@@ -267,6 +275,7 @@ class _ProductPageState extends State<ProductPage> {
                             content: Text(
                               'Has been added to the Wishlist',
                               textAlign: TextAlign.center,
+                              style: primaryTextStyle.copyWith(fontSize: 14.sp),
                             ),
                           ),
                         );
@@ -277,6 +286,7 @@ class _ProductPageState extends State<ProductPage> {
                             content: Text(
                               'Has been removed from the Wishlist',
                               textAlign: TextAlign.center,
+                              style: primaryTextStyle.copyWith(fontSize: 14.sp),
                             ),
                           ),
                         );
@@ -286,7 +296,7 @@ class _ProductPageState extends State<ProductPage> {
                       wishlistProvider.isWishlist(widget.product)
                           ? 'assets/button_wishlist_blue.png'
                           : 'assets/button_wishlist.png',
-                      width: 46,
+                      width: 46.w,
                     ),
                   ),
                 ],
@@ -296,11 +306,11 @@ class _ProductPageState extends State<ProductPage> {
             /// Note Container Price Product
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.all(16.w),
               margin: EdgeInsets.only(
-                top: 20,
-                left: defaultMargin,
-                right: defaultMargin,
+                top: 20.h,
+                left: defaultMargin.w,
+                right: defaultMargin.w,
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
@@ -312,14 +322,14 @@ class _ProductPageState extends State<ProductPage> {
                   Text(
                     'Price starts from',
                     style: primaryTextStyle.copyWith(
-                      fontSize: 14,
+                      fontSize: 14.sp,
                     ),
                   ),
                   Text(
                     '\$${widget.product.price}',
                     style: priceTextStyle.copyWith(
                       fontWeight: semibold,
-                      fontSize: 16,
+                      fontSize: 16.sp,
                     ),
                   )
                 ],
@@ -330,9 +340,9 @@ class _ProductPageState extends State<ProductPage> {
             Container(
               width: double.infinity,
               margin: EdgeInsets.only(
-                top: 20,
-                left: defaultMargin,
-                right: defaultMargin,
+                top: 20.h,
+                left: defaultMargin.w,
+                right: defaultMargin.w,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -341,7 +351,7 @@ class _ProductPageState extends State<ProductPage> {
                     'Description',
                     style: primaryTextStyle.copyWith(
                       fontWeight: medium,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                     ),
                   ),
                   SizedBox(
@@ -351,7 +361,7 @@ class _ProductPageState extends State<ProductPage> {
                     '${widget.product.description}',
                     style: subtitleTextStyle.copyWith(
                       fontWeight: light,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                     ),
                     textAlign: TextAlign.justify,
                   ),
@@ -361,7 +371,7 @@ class _ProductPageState extends State<ProductPage> {
 
             /// Note Familiar Shoes Product
             Container(
-              margin: EdgeInsets.only(top: 30),
+              margin: EdgeInsets.only(top: 30.h),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -372,7 +382,7 @@ class _ProductPageState extends State<ProductPage> {
                       'Familiar Shoes',
                       style: primaryTextStyle.copyWith(
                         fontWeight: medium,
-                        fontSize: 14,
+                        fontSize: 14.sp,
                       ),
                     ),
                   ),
@@ -382,14 +392,16 @@ class _ProductPageState extends State<ProductPage> {
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: familiarShoes.map((image) {
-                        index++;
-                        return Container(
-                          margin: EdgeInsets.only(
-                              left: index == 0 ? defaultMargin : 0),
-                          child: familiarShoesCard(image),
-                        );
-                      }).toList(),
+                      children: familiarShoes.map(
+                        (image) {
+                          index++;
+                          return Container(
+                            margin: EdgeInsets.only(
+                                left: index == 0 ? defaultMargin.w : 0.w),
+                            child: familiarShoesCard(image),
+                          );
+                        },
+                      ).toList(),
                     ),
                   )
                 ],
@@ -399,7 +411,7 @@ class _ProductPageState extends State<ProductPage> {
             /// Note Buttons
             Container(
               width: double.infinity,
-              margin: EdgeInsets.all(defaultMargin),
+              margin: EdgeInsets.all(defaultMargin.w),
               child: Row(
                 children: [
                   GestureDetector(
@@ -407,8 +419,10 @@ class _ProductPageState extends State<ProductPage> {
                       width: 54.w,
                       height: 54.h,
                       decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/button_chat.png'))),
+                        image: DecorationImage(
+                          image: AssetImage('assets/button_chat.png'),
+                        ),
+                      ),
                     ),
                     onTap: () {
                       Navigator.pushNamed(context, '/detail-chat');

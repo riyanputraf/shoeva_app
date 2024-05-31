@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shamo_app/theme.dart';
 
 class CheckoutSuccessPage extends StatelessWidget {
@@ -15,7 +16,7 @@ class CheckoutSuccessPage extends StatelessWidget {
           'Checkout Success',
           style: primaryTextStyle.copyWith(
             fontWeight: medium,
-            fontSize: 18,
+            fontSize: 18.sp,
           ),
         ),
       );
@@ -28,31 +29,31 @@ class CheckoutSuccessPage extends StatelessWidget {
           children: [
             Image.asset(
               'assets/icon_empty_cart.png',
-              width: 80,
+              width: 80.w,
             ),
             SizedBox(
-              height: 20,
+              height: 20.h,
             ),
             Text(
               'You made a transaction',
               style: primaryTextStyle.copyWith(
                 fontWeight: medium,
-                fontSize: 16,
+                fontSize: 16.sp,
               ),
             ),
             SizedBox(
-              height: 12,
+              height: 12.h,
             ),
             Text(
               'Stay at home while we \nprepare your dream shoes',
               style: secondaryTextStyle.copyWith(
                 fontWeight: regular,
-                fontSize: 14,
+                fontSize: 14.sp,
               ),
               textAlign: TextAlign.center,
             ),
             Container(
-              margin: EdgeInsets.only(top: defaultMargin),
+              margin: EdgeInsets.only(top: defaultMargin.h),
               child: TextButton(
                 onPressed: () {
                   Navigator.pushNamedAndRemoveUntil(
@@ -61,8 +62,8 @@ class CheckoutSuccessPage extends StatelessWidget {
                 style: TextButton.styleFrom(
                     backgroundColor: primaryColor,
                     padding: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 24,
+                      vertical: 10.h,
+                      horizontal: 24.w,
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -71,20 +72,20 @@ class CheckoutSuccessPage extends StatelessWidget {
                   'Order Other Shoes',
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                   ),
                 ),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 12),
+              margin: EdgeInsets.only(top: 12.h),
               child: TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
                     backgroundColor: Color(0xff39374B),
                     padding: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 40,
+                      vertical: 10.h,
+                      horizontal: 40.w,
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -93,7 +94,7 @@ class CheckoutSuccessPage extends StatelessWidget {
                   'View My Order',
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     color: Color(0xffB7B6BF),
                   ),
                 ),

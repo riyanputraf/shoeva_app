@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shamo_app/theme.dart';
 
 class ChatTile extends StatelessWidget {
@@ -12,7 +13,7 @@ class ChatTile extends StatelessWidget {
       },
       child: Container(
         margin: EdgeInsets.only(
-          top: 33,
+          top: 33.h,
         ),
         child: Column(
           children: [
@@ -20,10 +21,10 @@ class ChatTile extends StatelessWidget {
               children: [
                 Image.asset(
                   'assets/image_shop_logo.png',
-                  width: 54,
+                  width: 54.w,
                 ),
                 SizedBox(
-                  width: 12,
+                  width: 12.w,
                 ),
                 Expanded(
                   child: Column(
@@ -32,14 +33,14 @@ class ChatTile extends StatelessWidget {
                       Text(
                         'Shoe Store',
                         style: primaryTextStyle.copyWith(
-                          fontSize: 15,
+                          fontSize: 15.sp,
                         ),
                       ),
                       Text(
                         'Good night, This item is on...',
                         style: secondaryTextStyle.copyWith(
                           fontWeight: light,
-                          fontSize: 14,
+                          fontSize: 14.sp,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -49,12 +50,12 @@ class ChatTile extends StatelessWidget {
                 Text(
                   'Now',
                   style: secondaryTextStyle.copyWith(
-                    fontSize: 10,
+                    fontSize: 10.sp,
                   ),
                 )
               ],
             ),
-            SizedBox(height: 12,),
+            SizedBox(height: 12.h,),
             Divider(
               thickness: 2,
               color: Color(0xff2B2939),

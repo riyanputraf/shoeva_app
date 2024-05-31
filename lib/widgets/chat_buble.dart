@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shamo_app/theme.dart';
 
@@ -17,11 +18,11 @@ class ChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget productPreview() {
       return Container(
-        width: 250,
+        width: 250.w,
         margin: EdgeInsets.only(
-          bottom: 12,
+          bottom: 12.h,
         ),
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.all(12.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(isSender ? 12 : 0),
@@ -39,11 +40,11 @@ class ChatBubble extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   child: Image.asset(
                     'assets/image_shoes.png',
-                    width: 70,
+                    width: 70.w,
                   ),
                 ),
                 SizedBox(
-                  width: 8,
+                  width: 8.w,
                 ),
                 Expanded(
                   child: Column(
@@ -51,15 +52,18 @@ class ChatBubble extends StatelessWidget {
                     children: [
                       Text(
                         'COURT VISION 2.0 SHOES',
-                        style: primaryTextStyle,
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 14.sp,
+                        ),
                       ),
                       SizedBox(
-                        height: 4,
+                        height: 4.h,
                       ),
                       Text(
                         '\$57,15',
                         style: priceTextStyle.copyWith(
                           fontWeight: medium,
+                          fontSize: 14.sp,
                         ),
                       ),
                     ],
@@ -68,7 +72,7 @@ class ChatBubble extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 20,
+              height: 20.h,
             ),
             Row(
               children: [
@@ -84,24 +88,29 @@ class ChatBubble extends StatelessWidget {
                   onPressed: () {},
                   child: Text(
                     'Add to Cart',
-                    style: purpleTextStyle,
+                    style: purpleTextStyle.copyWith(
+                      fontSize: 14.sp,
+                    ),
                   ),
                 ),
                 SizedBox(
-                  width: 8,
+                  width: 8.w,
                 ),
-                TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                      backgroundColor: primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      )),
-                  child: Text(
-                    'Buy Now',
-                    style: GoogleFonts.poppins(
-                      color: bgColor5,
-                      fontWeight: medium,
+                Expanded(
+                  child: TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                        backgroundColor: primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        )),
+                    child: Text(
+                      'Buy Now',
+                      style: GoogleFonts.poppins(
+                        color: bgColor5,
+                        fontWeight: medium,
+                        fontSize: 14.sp,
+                      ),
                     ),
                   ),
                 )
@@ -115,7 +124,7 @@ class ChatBubble extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(
-        top: defaultMargin,
+        top: defaultMargin.h,
       ),
       child: Column(
         crossAxisAlignment:
@@ -129,11 +138,11 @@ class ChatBubble extends StatelessWidget {
               Flexible(
                 child: Container(
                   constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * 0.6,
+                    maxWidth: MediaQuery.of(context).size.width * 0.7,
                   ),
                   padding: EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 12,
+                    horizontal: 16.w,
+                    vertical: 12.h,
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -146,7 +155,10 @@ class ChatBubble extends StatelessWidget {
                   ),
                   child: Text(
                     text,
-                    style: primaryTextStyle,
+                    textAlign: TextAlign.left,
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 14.sp,
+                    ),
                   ),
                 ),
               ),

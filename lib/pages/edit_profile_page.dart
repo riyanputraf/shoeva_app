@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo_app/theme.dart';
 
@@ -10,7 +11,6 @@ class EditProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     UserModel user = authProvider.user;
@@ -21,12 +21,15 @@ class EditProfilePage extends StatelessWidget {
           'Edit Profile',
           style: primaryTextStyle.copyWith(
             fontWeight: medium,
-            fontSize: 18,
+            fontSize: 18.sp,
           ),
         ),
         backgroundColor: bgColor1,
         leading: IconButton(
-          icon: Icon(Icons.close),
+          icon: Icon(
+            Icons.close,
+            size: 24.w,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -36,7 +39,10 @@ class EditProfilePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.check),
+            icon: Icon(
+              Icons.check,
+              size: 24.w,
+            ),
             color: primaryColor,
           ),
         ],
@@ -52,14 +58,18 @@ class EditProfilePage extends StatelessWidget {
             Text(
               'Name',
               style: secondaryTextStyle.copyWith(
-                fontSize: 13,
+                fontSize: 13.sp,
               ),
             ),
             TextFormField(
-              style: primaryTextStyle,
+              style: primaryTextStyle.copyWith(
+                fontSize: 16.sp,
+              ),
               decoration: InputDecoration(
                   hintText: '${user.name}',
-                  hintStyle: primaryTextStyle,
+                  hintStyle: primaryTextStyle.copyWith(
+                    fontSize: 16.sp,
+                  ),
                   enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                     color: subtitleTextColor,
@@ -79,14 +89,18 @@ class EditProfilePage extends StatelessWidget {
             Text(
               'Username',
               style: secondaryTextStyle.copyWith(
-                fontSize: 13,
+                fontSize: 13.sp,
               ),
             ),
             TextFormField(
-              style: primaryTextStyle,
+              style: primaryTextStyle.copyWith(
+                fontSize: 16.sp,
+              ),
               decoration: InputDecoration(
                   hintText: '@${user.username}',
-                  hintStyle: primaryTextStyle,
+                  hintStyle: primaryTextStyle.copyWith(
+                    fontSize: 16.sp,
+                  ),
                   enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                     color: subtitleTextColor,
@@ -106,14 +120,18 @@ class EditProfilePage extends StatelessWidget {
             Text(
               'Email Address',
               style: secondaryTextStyle.copyWith(
-                fontSize: 13,
+                fontSize: 13.sp,
               ),
             ),
             TextFormField(
-              style: primaryTextStyle,
+              style: primaryTextStyle.copyWith(
+                fontSize: 16.sp,
+              ),
               decoration: InputDecoration(
                   hintText: '${user.email}',
-                  hintStyle: primaryTextStyle,
+                  hintStyle: primaryTextStyle.copyWith(
+                    fontSize: 16.sp,
+                  ),
                   enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                     color: subtitleTextColor,
@@ -127,34 +145,23 @@ class EditProfilePage extends StatelessWidget {
     Widget content() {
       return Container(
         padding: EdgeInsets.symmetric(
-          horizontal: defaultMargin,
+          horizontal: defaultMargin.w,
         ),
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: 100,
-              height: 100,
+              width: 100.w,
+              height: 100.h,
               margin: EdgeInsets.only(top: defaultMargin),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   fit: BoxFit.fill,
-                  image: user.profilePhotoUrl == null ||
-                      user.profilePhotoUrl.isEmpty
-                      ? Image.asset(
+                  image: AssetImage(
                     'assets/image_profile.png',
-                    width: 64,
-                    height: 64,
-                    fit: BoxFit.cover,
-                  ) as ImageProvider
-                      : Image.network(
-                    user.profilePhotoUrl,
-                    width: 64,
-                    height: 64,
-                    fit: BoxFit.cover,
-                  ) as ImageProvider,
+                  ),
                 ),
               ),
             ),

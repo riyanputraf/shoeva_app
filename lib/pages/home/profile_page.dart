@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo_app/theme.dart';
 
@@ -27,23 +28,15 @@ class ProfilePage extends StatelessWidget {
             child: Row(
               children: [
                 ClipOval(
-                  child: user.profilePhotoUrl == null ||
-                          user.profilePhotoUrl.isEmpty
-                      ? Image.asset(
-                          'assets/image_profile.png',
-                          width: 64,
-                          height: 64,
-                          fit: BoxFit.cover,
-                        )
-                      : Image.network(
-                          user.profilePhotoUrl,
-                          width: 64,
-                          height: 64,
-                          fit: BoxFit.cover,
-                        ),
+                  child: Image.asset(
+                    'assets/image_profile.png',
+                    width: 64.w,
+                    height: 64.h,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 SizedBox(
-                  width: 16,
+                  width: 16.w,
                 ),
                 Expanded(
                   child: Column(
@@ -53,14 +46,14 @@ class ProfilePage extends StatelessWidget {
                         'Hello, ${user.name}',
                         style: primaryTextStyle.copyWith(
                           fontWeight: semibold,
-                          fontSize: 24,
+                          fontSize: 24.sp,
                         ),
                       ),
                       Text(
                         '@${user.username}',
                         style: subtitleTextStyle.copyWith(
                           fontWeight: regular,
-                          fontSize: 16,
+                          fontSize: 16.sp,
                         ),
                       ),
                     ],
@@ -73,7 +66,7 @@ class ProfilePage extends StatelessWidget {
                   },
                   child: Image.asset(
                     'assets/button_exit.png',
-                    width: 20,
+                    width: 20.w,
                   ),
                 )
               ],
@@ -86,7 +79,7 @@ class ProfilePage extends StatelessWidget {
     Widget menuItem(String text) {
       return Container(
         margin: EdgeInsets.only(
-          top: 20,
+          top: 20.h,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,12 +87,13 @@ class ProfilePage extends StatelessWidget {
             Text(
               text,
               style: secondaryTextStyle.copyWith(
-                fontSize: 13,
+                fontSize: 13.sp,
               ),
             ),
             Icon(
               Icons.chevron_right,
               color: primaryTextColor,
+              size: 24.w,
             )
           ],
         ),
@@ -110,7 +104,7 @@ class ProfilePage extends StatelessWidget {
       return Expanded(
         child: Container(
           width: double.infinity,
-          padding: EdgeInsets.symmetric(horizontal: 30),
+          padding: EdgeInsets.symmetric(horizontal: 30.w),
           decoration: BoxDecoration(
             color: bgColor3,
           ),
@@ -118,13 +112,13 @@ class ProfilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Text(
                 'Account',
                 style: primaryTextStyle.copyWith(
                   fontWeight: semibold,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                 ),
               ),
               GestureDetector(
@@ -142,7 +136,7 @@ class ProfilePage extends StatelessWidget {
                 'General',
                 style: primaryTextStyle.copyWith(
                   fontWeight: semibold,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                 ),
               ),
               menuItem('Privacy & Policy'),

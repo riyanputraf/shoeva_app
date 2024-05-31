@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo_app/models/product_model.dart';
 import 'package:shamo_app/providers/wishlist_provider.dart';
@@ -19,16 +20,14 @@ class WishlistCard extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.only(
-        top: 20,
+        top: 20.w,
       ),
-      padding: EdgeInsets.only(
-        top: 10,
-        left: 12,
-        bottom: 14,
-        right: 20,
+      padding: EdgeInsets.symmetric(
+        vertical: 10.h,
+        horizontal: 12.w,
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.w),
         color: bgColor4,
       ),
       child: Row(
@@ -37,21 +36,21 @@ class WishlistCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             child: CachedNetworkImage(
               imageUrl: imageUrl,
-              width: 60,
-              height: 60,
+              width: 60.w,
+              height: 60.h,
               fit: BoxFit.cover,
               placeholder: (context, url) => Center(
                 child: CircularProgressIndicator(),
               ),
               errorWidget: (context, url, error) => Icon(
                 Icons.image_not_supported,
-                size: 60,
+                size: 60.w,
                 color: Colors.grey,
               ),
             ),
           ),
           SizedBox(
-            width: 12,
+            width: 12.w,
           ),
           Expanded(
             child: Column(
@@ -60,10 +59,16 @@ class WishlistCard extends StatelessWidget {
                 Text(
                   '${product.name}',
                   style: primaryTextStyle.copyWith(
+                    fontSize: 14.sp,
                     fontWeight: semibold,
                   ),
                 ),
-                Text('\$${product.price}', style: priceTextStyle),
+                Text(
+                  '\$${product.price}',
+                  style: priceTextStyle.copyWith(
+                    fontSize: 14.sp,
+                  ),
+                ),
               ],
             ),
           ),
@@ -73,7 +78,7 @@ class WishlistCard extends StatelessWidget {
             },
             child: Image.asset(
               'assets/button_wishlist_blue.png',
-              width: 34,
+              width: 34.w,
             ),
           )
         ],

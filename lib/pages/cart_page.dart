@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shamo_app/widgets/cart_card.dart';
 
 import '../theme.dart';
@@ -15,14 +16,17 @@ class CartPage extends StatelessWidget {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.chevron_left),
+          child: Icon(
+            Icons.chevron_left,
+            size: 24.w,
+          ),
         ),
         centerTitle: true,
         title: Text(
           'Your Cart',
           style: primaryTextStyle.copyWith(
             fontWeight: medium,
-            fontSize: 18,
+            fontSize: 18.sp,
           ),
         ),
         elevation: 0,
@@ -38,32 +42,32 @@ class CartPage extends StatelessWidget {
           children: [
             Image.asset(
               'assets/icon_cart_empty.png',
-              width: 80,
+              width: 80.w,
             ),
             SizedBox(
-              height: 20,
+              height: 20.h,
             ),
             Text(
               'Opss! Your Cart is Empty',
               style: primaryTextStyle.copyWith(
                 fontWeight: medium,
-                fontSize: 16,
+                fontSize: 16.sp,
               ),
             ),
             SizedBox(
-              height: 12,
+              height: 12.h,
             ),
             Text(
               'Let\'s find your favorite shoes',
               style: secondaryTextStyle.copyWith(
-                fontSize: 14,
+                fontSize: 14.sp,
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 20.h,
             ),
             Container(
-              height: 44,
+              height: 44.h,
               child: TextButton(
                 onPressed: () {
                   Navigator.pushNamedAndRemoveUntil(
@@ -71,8 +75,8 @@ class CartPage extends StatelessWidget {
                 },
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 10,
+                    horizontal: 24.w,
+                    vertical: 10.h,
                   ),
                   backgroundColor: primaryColor,
                   shape: RoundedRectangleBorder(
@@ -83,7 +87,7 @@ class CartPage extends StatelessWidget {
                   'Explore Store',
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                   ),
                 ),
               ),
@@ -107,42 +111,44 @@ class CartPage extends StatelessWidget {
 
     Widget customBottomNav() {
       return Container(
-        height: 180,
+        height: 180.h,
         child: Column(
           children: [
             Container(
               margin: EdgeInsets.symmetric(
-                horizontal: defaultMargin,
+                horizontal: defaultMargin.w,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Subtotal',
-                    style: primaryTextStyle,
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 14.sp,
+                    ),
                   ),
                   Text(
                     '\$287,96',
                     style: priceTextStyle.copyWith(
                       fontWeight: semibold,
-                      fontSize: 16,
+                      fontSize: 16.sp,
                     ),
                   ),
                 ],
               ),
             ),
             SizedBox(
-              height: 12,
+              height: 12.h,
             ),
             Divider(
               thickness: 0.5,
               color: subtitleTextColor,
             ),
             SizedBox(
-              height: 30,
+              height: 30.h,
             ),
             Container(
-              height: 50,
+              height: 50.h,
               margin: EdgeInsets.symmetric(horizontal: defaultMargin),
               child: TextButton(
                 onPressed: () {
@@ -150,8 +156,8 @@ class CartPage extends StatelessWidget {
                 },
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 13,
+                    horizontal: 20.w,
+                    vertical: 13.h,
                   ),
                   backgroundColor: primaryColor,
                   shape: RoundedRectangleBorder(
@@ -165,12 +171,13 @@ class CartPage extends StatelessWidget {
                       'Continue to Checkout',
                       style: primaryTextStyle.copyWith(
                         fontWeight: semibold,
-                        fontSize: 16,
+                        fontSize: 16.sp,
                       ),
                     ),
                     Icon(
                       Icons.arrow_forward,
                       color: primaryTextColor,
+                      size: 24.w,
                     ),
                   ],
                 ),

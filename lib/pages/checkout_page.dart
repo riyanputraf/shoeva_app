@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shamo_app/theme.dart';
 import 'package:shamo_app/widgets/checkout_card.dart';
 
@@ -14,14 +15,17 @@ class CheckoutPage extends StatelessWidget {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.chevron_left),
+          child: Icon(
+            Icons.chevron_left,
+            size: 24.w,
+          ),
         ),
         centerTitle: true,
         title: Text(
           'Checkout Details',
           style: primaryTextStyle.copyWith(
             fontWeight: medium,
-            fontSize: 18,
+            fontSize: 18.sp,
           ),
         ),
         elevation: 0,
@@ -34,11 +38,10 @@ class CheckoutPage extends StatelessWidget {
           horizontal: defaultMargin,
         ),
         children: [
-
           /// NOTE: List Item
           Container(
             margin: EdgeInsets.only(
-              top: defaultMargin,
+              top: defaultMargin.h,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +50,7 @@ class CheckoutPage extends StatelessWidget {
                   'List Items',
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                   ),
                 ),
                 CheckoutCard(),
@@ -59,13 +62,13 @@ class CheckoutPage extends StatelessWidget {
           /// Note address detail
           Container(
             margin: EdgeInsets.only(
-              top: defaultMargin,
+              top: defaultMargin.h,
             ),
             decoration: BoxDecoration(
               color: bgColor4,
               borderRadius: BorderRadius.circular(12),
             ),
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.all(20.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -73,11 +76,11 @@ class CheckoutPage extends StatelessWidget {
                   'Address Details',
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                   ),
                 ),
                 SizedBox(
-                  height: 12,
+                  height: 12.h,
                 ),
                 Row(
                   children: [
@@ -85,20 +88,21 @@ class CheckoutPage extends StatelessWidget {
                       children: [
                         Image.asset(
                           'assets/icon_store_location.png',
-                          width: 40,
+                          width: 40.w,
                         ),
                         Image.asset(
                           'assets/icon_line.png',
-                          height: defaultMargin,
+                          height: defaultMargin.h,
+                          width: 29.w,
                         ),
                         Image.asset(
                           'assets/icon_your_address.png',
-                          width: 40,
+                          width: 40.w,
                         ),
                       ],
                     ),
                     SizedBox(
-                      width: 12,
+                      width: 12.w,
                     ),
                     Expanded(
                       child: Column(
@@ -108,14 +112,14 @@ class CheckoutPage extends StatelessWidget {
                             'Store Location',
                             style: secondaryTextStyle.copyWith(
                               fontWeight: light,
-                              fontSize: 12,
+                              fontSize: 12.sp,
                             ),
                           ),
                           Text(
                             'Adidas Core Location',
                             style: primaryTextStyle.copyWith(
                               fontWeight: medium,
-                              fontSize: 14,
+                              fontSize: 14.sp,
                             ),
                           ),
                           SizedBox(
@@ -125,14 +129,14 @@ class CheckoutPage extends StatelessWidget {
                             'Your Address',
                             style: secondaryTextStyle.copyWith(
                               fontWeight: light,
-                              fontSize: 12,
+                              fontSize: 12.sp,
                             ),
                           ),
                           Text(
                             'Marsemoon',
                             style: primaryTextStyle.copyWith(
                               fontWeight: medium,
-                              fontSize: 14,
+                              fontSize: 14.sp,
                             ),
                           ),
                         ],
@@ -147,13 +151,13 @@ class CheckoutPage extends StatelessWidget {
           /// Note Payment Summary
           Container(
             margin: EdgeInsets.only(
-              top: defaultMargin,
+              top: defaultMargin.h,
             ),
             decoration: BoxDecoration(
               color: bgColor4,
               borderRadius: BorderRadius.circular(12),
             ),
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.all(20.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -161,11 +165,11 @@ class CheckoutPage extends StatelessWidget {
                   'Payment Summary',
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                   ),
                 ),
                 SizedBox(
-                  height: 12,
+                  height: 12.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -173,20 +177,20 @@ class CheckoutPage extends StatelessWidget {
                     Text(
                       'Product Quantity',
                       style: secondaryTextStyle.copyWith(
-                        fontSize: 12,
+                        fontSize: 12.sp,
                       ),
                     ),
                     Text(
                       '2 Items',
                       style: primaryTextStyle.copyWith(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: medium,
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 12,
+                  height: 12.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -194,20 +198,20 @@ class CheckoutPage extends StatelessWidget {
                     Text(
                       'Product Price',
                       style: secondaryTextStyle.copyWith(
-                        fontSize: 12,
+                        fontSize: 12.sp,
                       ),
                     ),
                     Text(
                       '\$575.96',
                       style: primaryTextStyle.copyWith(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: medium,
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 12,
+                  height: 12.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -215,27 +219,27 @@ class CheckoutPage extends StatelessWidget {
                     Text(
                       'Shipping',
                       style: secondaryTextStyle.copyWith(
-                        fontSize: 12,
+                        fontSize: 12.sp,
                       ),
                     ),
                     Text(
                       'Free',
                       style: primaryTextStyle.copyWith(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: medium,
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 12,
+                  height: 12.h,
                 ),
                 Divider(
                   thickness: 1,
                   color: subtitleTextColor,
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -243,14 +247,14 @@ class CheckoutPage extends StatelessWidget {
                     Text(
                       'Total',
                       style: priceTextStyle.copyWith(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: semibold,
                       ),
                     ),
                     Text(
                       'Free',
                       style: priceTextStyle.copyWith(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: semibold,
                       ),
                     ),
@@ -262,38 +266,38 @@ class CheckoutPage extends StatelessWidget {
 
           /// Note checkout button
           SizedBox(
-            height: defaultMargin,
+            height: defaultMargin.h,
           ),
           Divider(
             thickness: 1,
             color: subtitleTextColor,
           ),
           Container(
-            height: 50,
+            height: 50.h,
             width: double.infinity,
             margin: EdgeInsets.symmetric(
-              vertical: defaultMargin,
+              vertical: defaultMargin.h,
             ),
             child: TextButton(
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                     context, '/checkout-success', (route) => false);
               },
-              child: Text(
-                'Checkout Now',
-                style: primaryTextStyle.copyWith(
-                  fontWeight: semibold,
-                  fontSize: 16,
-                ),
-              ),
               style: TextButton.styleFrom(
                   padding: EdgeInsets.symmetric(
-                    vertical: 13,
+                    vertical: 13.h,
                   ),
                   backgroundColor: primaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   )),
+              child: Text(
+                'Checkout Now',
+                style: primaryTextStyle.copyWith(
+                  fontWeight: semibold,
+                  fontSize: 16.sp,
+                ),
+              ),
             ),
           ),
         ],

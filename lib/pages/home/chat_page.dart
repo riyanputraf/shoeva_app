@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shamo_app/theme.dart';
 import 'package:shamo_app/widgets/chat_tile.dart';
 
@@ -13,7 +14,7 @@ class ChatPage extends StatelessWidget {
         'Message Support',
         style: primaryTextStyle.copyWith(
           fontWeight: medium,
-          fontSize: 18,
+          fontSize: 18.sp,
         ),
       ),
       elevation: 0,
@@ -31,38 +32,38 @@ class ChatPage extends StatelessWidget {
           children: [
             Image.asset(
               'assets/icon_headset.png',
-              width: 80,
+              width: 80.w,
             ),
             SizedBox(
-              height: 20,
+              height: 20.h,
             ),
             Text(
               'Opss no message yet?',
               style: primaryTextStyle.copyWith(
                 fontWeight: medium,
-                fontSize: 16,
+                fontSize: 16.sp,
               ),
             ),
             SizedBox(
-              height: 12,
+              height: 12.h,
             ),
             Text(
               'You have never done a transaction',
               style: secondaryTextStyle.copyWith(
-                fontSize: 14,
+                fontSize: 14.sp,
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 20.h,
             ),
             Container(
-              height: 44,
+              height: 44.h,
               child: TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 10,
+                    horizontal: 24.w,
+                    vertical: 10.h,
                   ),
                   backgroundColor: primaryColor,
                   shape: RoundedRectangleBorder(
@@ -73,7 +74,7 @@ class ChatPage extends StatelessWidget {
                   'Explore Store',
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                   ),
                 ),
               ),

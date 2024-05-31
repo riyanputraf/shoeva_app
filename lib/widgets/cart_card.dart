@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shamo_app/theme.dart';
 
 class CartCard extends StatelessWidget {
@@ -9,11 +10,11 @@ class CartCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(
-        top: defaultMargin,
+        top: defaultMargin.h,
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 10,
+        horizontal: 16.w,
+        vertical: 10.h,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -27,11 +28,11 @@ class CartCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
                   'assets/image_shoes.png',
-                  width: 60,
+                  width: 60.w,
                 ),
               ),
               SizedBox(
-                width: 12,
+                width: 12.w,
               ),
               Expanded(
                 child: Column(
@@ -41,14 +42,14 @@ class CartCard extends StatelessWidget {
                       'Terrex Urban Low',
                       style: primaryTextStyle.copyWith(
                         fontWeight: semibold,
-                        fontSize: 14,
+                        fontSize: 14.sp,
                       ),
                     ),
                     Text(
                       '\$143,98',
                       style: priceTextStyle.copyWith(
                         fontWeight: regular,
-                        fontSize: 14,
+                        fontSize: 14.sp,
                       ),
                     )
                   ],
@@ -58,46 +59,46 @@ class CartCard extends StatelessWidget {
                 children: [
                   Image.asset(
                     'assets/button_add.png',
-                    width: 16,
+                    width: 16.w,
                   ),
                   SizedBox(
-                    height: 2,
+                    height: 2.h,
                   ),
                   Text(
                     '2',
                     style: primaryTextStyle.copyWith(
                       fontWeight: medium,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                     ),
                   ),
                   SizedBox(
-                    height: 2,
+                    height: 2.h,
                   ),
                   Image.asset(
                     'assets/button_min.png',
-                    width: 16,
+                    width: 16.w,
                   ),
                 ],
               ),
             ],
           ),
           SizedBox(
-            height: 12,
+            height: 12.h,
           ),
           Row(
             children: [
               Image.asset(
                 'assets/icon_remove.png',
-                width: 10,
+                width: 10.w,
               ),
               SizedBox(
-                width: 4,
+                width: 4.w,
               ),
               Text(
                 'Remove',
                 style: alertTextStyle.copyWith(
                   fontWeight: light,
-                  fontSize: 12,
+                  fontSize: 12.sp,
                 ),
               )
             ],

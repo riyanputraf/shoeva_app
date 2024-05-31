@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shamo_app/theme.dart';
 
 class CheckoutCard extends StatelessWidget {
@@ -12,11 +13,11 @@ class CheckoutCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       margin: EdgeInsets.only(
-        top: 12,
+        top: 12.h,
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 20,
+        horizontal: 12.w,
+        vertical: 20.h,
       ),
       child: Row(
         children: [
@@ -24,11 +25,11 @@ class CheckoutCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
               'assets/image_shoes.png',
-              width: 60,
+              width: 60.w,
             ),
           ),
           SizedBox(
-            width: 12,
+            width: 12.w,
           ),
           Expanded(
             child: Column(
@@ -37,24 +38,28 @@ class CheckoutCard extends StatelessWidget {
                 Text(
                   'Terrex Urban Low',
                   style: primaryTextStyle.copyWith(
+                    fontSize: 14.sp,
                     fontWeight: semibold,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(
-                  height: 2,
+                  height: 2.h,
                 ),
-                Text('\$143,98', style: priceTextStyle),
+                Text(
+                  '\$143,98',
+                  style: priceTextStyle.copyWith(fontSize: 14.sp),
+                ),
               ],
             ),
           ),
           SizedBox(
-            height: 12,
+            height: 12.h,
           ),
           Text(
             '2 Items',
             style: secondaryTextStyle.copyWith(
-              fontSize: 12,
+              fontSize: 12.sp,
             ),
           )
         ],

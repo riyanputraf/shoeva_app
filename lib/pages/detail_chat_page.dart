@@ -1,45 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shamo_app/theme.dart';
 import 'package:shamo_app/widgets/chat_buble.dart';
 
 class DetailChatPage extends StatelessWidget {
   const DetailChatPage({super.key});
 
-  /// Refactor Later
-  // Widget header() {
-  //   return PreferredSize(
-  //     child: AppBar(
-  //       backgroundColor: bgColor1,
-  //       centerTitle: false,
-  //       title: Row(
-  //         children: [
-  //           Image.asset(
-  //             'assets/image_shop_online.png',
-  //             width: 50,
-  //           )
-  //         ],
-  //       ),
-  //     ),
-  //     preferredSize: Size.fromHeight(70),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     Widget productPreview() {
       return Container(
-        width: 225,
-        height: 74,
-        padding: EdgeInsets.all(10),
+        width: 225.w,
+        height: 74.h,
+        padding: EdgeInsets.all(10.w),
         margin: EdgeInsets.only(
-          bottom: 20,
+          bottom: 20.h,
         ),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: bgColor5,
-            border: Border.all(
-              color: primaryColor,
-            )),
+          borderRadius: BorderRadius.circular(12),
+          color: bgColor5,
+          border: Border.all(
+            color: primaryColor,
+          ),
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -47,11 +30,11 @@ class DetailChatPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: Image.asset(
                 'assets/image_shoes.png',
-                width: 54,
+                width: 54.w,
               ),
             ),
             SizedBox(
-              width: 10,
+              width: 10.w,
             ),
             Expanded(
               child: Column(
@@ -61,26 +44,30 @@ class DetailChatPage extends StatelessWidget {
                   Text(
                     'COURT VISION 2.0 dadadadadada',
                     style: primaryTextStyle.copyWith(
-                      fontSize: 14,
+                      fontSize: 14.sp,
                       fontWeight: regular,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(
-                    height: 2,
+                    height: 2.h,
                   ),
                   Text(
                     '\$57,15',
                     style: priceTextStyle.copyWith(
                       fontWeight: medium,
+                      fontSize: 14.sp,
                     ),
                   ),
                 ],
               ),
             ),
+            SizedBox(
+              width: 20.w,
+            ),
             Image.asset(
               'assets/button_close.png',
-              width: 22,
+              width: 22.w,
             ),
           ],
         ),
@@ -89,7 +76,7 @@ class DetailChatPage extends StatelessWidget {
 
     Widget chatInput() {
       return Container(
-        margin: EdgeInsets.all(20),
+        margin: EdgeInsets.all(20.w),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,9 +86,9 @@ class DetailChatPage extends StatelessWidget {
               children: [
                 Expanded(
                   child: Container(
-                    height: 45,
+                    height: 45.h,
                     padding: EdgeInsets.symmetric(
-                      horizontal: 16,
+                      horizontal: 16.w,
                     ),
                     decoration: BoxDecoration(
                       color: bgColor4,
@@ -109,7 +96,9 @@ class DetailChatPage extends StatelessWidget {
                     ),
                     child: Center(
                       child: TextFormField(
-                        style: primaryTextStyle,
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 14.sp,
+                        ),
                         decoration: InputDecoration.collapsed(
                           hintText: 'Type Message...',
                           hintStyle: subtitleTextStyle,
@@ -119,11 +108,11 @@ class DetailChatPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 20,
+                  width: 20.w,
                 ),
                 Image.asset(
                   'assets/button_send.png',
-                  width: 45,
+                  width: 45.w,
                 )
               ],
             ),
@@ -135,7 +124,7 @@ class DetailChatPage extends StatelessWidget {
     Widget content() {
       return ListView(
         padding: EdgeInsets.symmetric(
-          horizontal: defaultMargin,
+          horizontal: defaultMargin.w,
         ),
         children: [
           ChatBubble(
@@ -154,17 +143,27 @@ class DetailChatPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: bgColor3,
       appBar: PreferredSize(
+        preferredSize: Size.fromHeight(70),
         child: AppBar(
           backgroundColor: bgColor1,
           centerTitle: false,
+          leading: GestureDetector(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.chevron_left,
+              size: 24.w,
+            ),
+          ),
           title: Row(
             children: [
               Image.asset(
                 'assets/image_shop_online.png',
-                width: 50,
+                width: 50.w,
               ),
               SizedBox(
-                width: 12,
+                width: 12.w,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,14 +172,14 @@ class DetailChatPage extends StatelessWidget {
                     'Shoe Store',
                     style: primaryTextStyle.copyWith(
                       fontWeight: medium,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                     ),
                   ),
                   Text(
                     'Online',
                     style: secondaryTextStyle.copyWith(
                       fontWeight: light,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                     ),
                   ),
                 ],
@@ -188,7 +187,6 @@ class DetailChatPage extends StatelessWidget {
             ],
           ),
         ),
-        preferredSize: Size.fromHeight(70),
       ),
       bottomNavigationBar: chatInput(),
       body: content(),

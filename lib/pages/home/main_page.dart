@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shamo_app/pages/home/chat_page.dart';
 import 'package:shamo_app/pages/home/home_page.dart';
 import 'package:shamo_app/pages/home/profile_page.dart';
@@ -23,7 +24,7 @@ class _MainPageState extends State<MainPage> {
       },
       child: Image.asset(
         'assets/icon_cart.png',
-        width: 20,
+        width: 20.w,
       ),
     );
   }
@@ -31,11 +32,11 @@ class _MainPageState extends State<MainPage> {
   Widget customButtonNav() {
     return ClipRRect(
       borderRadius: BorderRadius.vertical(
-        top: Radius.circular(30),
+        top: Radius.circular(30.w),
       ),
       child: BottomAppBar(
         shape: CircularNotchedRectangle(),
-        notchMargin: 12,
+        notchMargin: 12.w,
         clipBehavior: Clip.antiAlias,
         child: BottomNavigationBar(
           backgroundColor: bgColor4,
@@ -50,12 +51,12 @@ class _MainPageState extends State<MainPage> {
             BottomNavigationBarItem(
               icon: Container(
                 margin: EdgeInsets.only(
-                  top: 30,
-                  bottom: 30,
+                  top: 30.h,
+                  bottom: 30.h,
                 ),
                 child: Image.asset(
                   'assets/icon_home.png',
-                  width: 21,
+                  width: 21.w,
                   color: currentIndex == 0 ? primaryColor : Color(0xff808191),
                 ),
               ),
@@ -64,12 +65,12 @@ class _MainPageState extends State<MainPage> {
             BottomNavigationBarItem(
               icon: Container(
                 margin: EdgeInsets.only(
-                  top: 30,
-                  bottom: 30,
+                  top: 30.h,
+                  bottom: 30.h,
                 ),
                 child: Image.asset(
                   'assets/icon_chat.png',
-                  width: 20,
+                  width: 20.w,
                   color: currentIndex == 1 ? primaryColor : Color(0xff808191),
                 ),
               ),
@@ -78,12 +79,12 @@ class _MainPageState extends State<MainPage> {
             BottomNavigationBarItem(
               icon: Container(
                 margin: EdgeInsets.only(
-                  top: 30,
-                  bottom: 30,
+                  top: 30.h,
+                  bottom: 30.h,
                 ),
                 child: Image.asset(
                   'assets/icon_wishlist.png',
-                  width: 20,
+                  width: 20.w,
                   color: currentIndex == 2 ? primaryColor : Color(0xff808191),
                 ),
               ),
@@ -92,12 +93,12 @@ class _MainPageState extends State<MainPage> {
             BottomNavigationBarItem(
               icon: Container(
                 margin: EdgeInsets.only(
-                  top: 30,
-                  bottom: 30,
+                  top: 30.h,
+                  bottom: 30.h,
                 ),
                 child: Image.asset(
                   'assets/icon_profile.png',
-                  width: 18,
+                  width: 18.w,
                   color: currentIndex == 3 ? primaryColor : Color(0xff808191),
                 ),
               ),
@@ -113,16 +114,12 @@ class _MainPageState extends State<MainPage> {
     switch (currentIndex) {
       case 0:
         return HomePage();
-        break;
       case 1:
         return ChatPage();
-        break;
       case 2:
         return WishlistPage();
-        break;
       case 3:
         return ProfilePage();
-        break;
       default:
         return HomePage();
     }
