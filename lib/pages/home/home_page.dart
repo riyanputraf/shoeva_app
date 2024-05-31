@@ -15,7 +15,6 @@ class HomePage extends StatelessWidget {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     UserModel user = authProvider.user;
-    ProductProvider productProvider = Provider.of<ProductProvider>(context);
 
     Widget header() {
       return Container(
@@ -198,37 +197,6 @@ class HomePage extends StatelessWidget {
     }
 
     /// Widge popularProducts menggunakan Consumer
-    // Widget popularProducts() {
-    //   return Container(
-    //     margin: EdgeInsets.only(
-    //       top: 14,
-    //     ),
-    //     child: SingleChildScrollView(
-    //       scrollDirection: Axis.horizontal,
-    //       child: Row(
-    //         children: [
-    //           SizedBox(
-    //             width: defaultMargin,
-    //           ),
-    //           Consumer<ProductProvider>(
-    //             builder: (context, productProvider, child) {
-    //               return Row(
-    //                 children: productProvider.products
-    //                     .map(
-    //                       (product) => ProductCard(
-    //                     product: product,
-    //                   ),
-    //                 )
-    //                     .toList(),
-    //               );
-    //             },
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //   );
-    // }
-
     Widget popularProducts() {
       return Container(
         margin: EdgeInsets.only(
@@ -241,20 +209,19 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 width: defaultMargin,
               ),
-              Row(
-                children: productProvider.products
-                    .map(
-                      (product) => ProductCard(
-                        product: product,
-                      ),
-                    )
-                    .toList(),
-
-                /// Jika API belum jadi uncomment ini
-                // ProductCard(),
-                // ProductCard(),
-                // ProductCard(),
-              )
+              Consumer<ProductProvider>(
+                builder: (context, productProvider, child) {
+                  return Row(
+                    children: productProvider.products
+                        .map(
+                          (product) => ProductCard(
+                            product: product,
+                          ),
+                        )
+                        .toList(),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -283,12 +250,16 @@ class HomePage extends StatelessWidget {
         margin: EdgeInsets.only(
           top: 14,
         ),
-        child: Column(
-          children: productProvider.products
-              .map(
-                (product) => ProductTile(product: product),
-              )
-              .toList(),
+        child: Consumer<ProductProvider>(
+          builder: (context, productProvider, child) {
+            return Column(
+              children: productProvider.products
+                  .map(
+                    (product) => ProductTile(product: product),
+                  )
+                  .toList(),
+            );
+          },
         ),
       );
     }
