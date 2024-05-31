@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo_app/pages/cart_page.dart';
@@ -36,19 +37,26 @@ class MyApp extends StatelessWidget {
           create: (context) => WishlistProvider(),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        routes: {
-          '/': (context) => SplashPage(),
-          '/sign-in': (context) => SignInPage(),
-          '/sign-up': (context) => SignUpPage(),
-          '/home': (context) => MainPage(),
-          '/detail-chat': (context) => DetailChatPage(),
-          '/edit-profile': (context) => EditProfilePage(),
-          '/cart': (context) => CartPage(),
-          '/checkout': (context) => CheckoutPage(),
-          '/checkout-success': (context) => CheckoutSuccessPage(),
-        },
+      child: ScreenUtilInit(
+        designSize: Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            routes: {
+              '/': (context) => SplashPage(),
+              '/sign-in': (context) => SignInPage(),
+              '/sign-up': (context) => SignUpPage(),
+              '/home': (context) => MainPage(),
+              '/detail-chat': (context) => DetailChatPage(),
+              '/edit-profile': (context) => EditProfilePage(),
+              '/cart': (context) => CartPage(),
+              '/checkout': (context) => CheckoutPage(),
+              '/checkout-success': (context) => CheckoutSuccessPage(),
+            },
+          );
+        }
       ),
     );
   }
