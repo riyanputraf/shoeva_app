@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo_app/providers/wishlist_provider.dart';
 import 'package:shamo_app/theme.dart';
 
 import '../models/product_model.dart';
+import '../utils/url_util.dart';
 
 class ProductPage extends StatefulWidget {
   ProductPage({super.key, required this.product});
@@ -36,19 +38,9 @@ class _ProductPageState extends State<ProductPage> {
 
   int currentIndex = 0;
 
-  String updateLocalhostUrl(String url) {
-    if (url.contains('localhost')) {
-      return url.replaceAll('localhost', '10.0.2.2');
-    } else if (url.contains('127.0.0.1')) {
-      return url.replaceAll('127.0.0.1', '10.0.2.2');
-    }
-    return url;
-  }
 
   @override
   Widget build(BuildContext context) {
-
-    String imageUrl = updateLocalhostUrl(widget.product.galleries[0].url);
 
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
 
@@ -225,6 +217,7 @@ class _ProductPageState extends State<ProductPage> {
 
       return Container(
         width: double.infinity,
+        height: 502.h,
         margin: EdgeInsets.only(top: 17),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.vertical(
@@ -352,7 +345,7 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 12,
+                    height: 12.h,
                   ),
                   Text(
                     '${widget.product.description}',
@@ -384,7 +377,7 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 12,
+                    height: 12.h,
                   ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
@@ -411,8 +404,8 @@ class _ProductPageState extends State<ProductPage> {
                 children: [
                   GestureDetector(
                     child: Container(
-                      width: 54,
-                      height: 54,
+                      width: 54.w,
+                      height: 54.h,
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage('assets/button_chat.png'))),
@@ -422,11 +415,11 @@ class _ProductPageState extends State<ProductPage> {
                     },
                   ),
                   SizedBox(
-                    width: 16,
+                    width: 16.w,
                   ),
                   Expanded(
                     child: Container(
-                      height: 54,
+                      height: 54.h,
                       child: TextButton(
                         onPressed: () {
                           showSuccesDialog();
@@ -441,7 +434,7 @@ class _ProductPageState extends State<ProductPage> {
                           'Add to Cart',
                           style: primaryTextStyle.copyWith(
                             fontWeight: semibold,
-                            fontSize: 16,
+                            fontSize: 16.sp,
                           ),
                         ),
                       ),

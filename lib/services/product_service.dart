@@ -8,16 +8,6 @@ import '../models/gallery_model.dart';
 class ProductService {
   String baseUrl = 'http://10.0.2.2:8000/api';
 
-  String updateLocalhostUrl(String url) {
-    if (url.contains('localhost')) {
-      return url.replaceAll('localhost', '10.0.2.2');
-    } else if (url.contains('127.0.0.1')) {
-      return url.replaceAll('127.0.0.1', '10.0.2.2');
-    }
-    return url;
-  }
-
-
   Future<List<ProductModel>> getProducts() async {
     var url = '$baseUrl/products';
     var headers = {'Content-Type': 'application/json'};
@@ -31,7 +21,6 @@ class ProductService {
       List<ProductModel> products = [];
 
       for (var item in data) {
-
         /// jika menjalankan di localhost pakai metode ini
         // List<GalleryModel> galleries = [];
         // for (var gallery in item['galleries']) {
