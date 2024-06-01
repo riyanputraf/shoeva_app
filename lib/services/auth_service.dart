@@ -12,15 +12,16 @@ class AuthService {
     required String email,
     required String password,
   }) async {
-
     var url = '$baseUrl/register';
     var headers = {'Content-Type': 'application/json'};
-    var body = jsonEncode({
-      'name': name,
-      'username': username,
-      'email': email,
-      'password': password,
-    });
+    var body = jsonEncode(
+      {
+        'name': name,
+        'username': username,
+        'email': email,
+        'password': password,
+      },
+    );
 
     var response = await http.post(
       Uri.parse(url),
@@ -45,7 +46,6 @@ class AuthService {
     required String email,
     required String password,
   }) async {
-
     var url = '$baseUrl/login';
     var headers = {'Content-Type': 'application/json'};
     var body = jsonEncode({
