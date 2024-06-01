@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:shamo_app/models/product_model.dart';
 
 import '../models/cart_model.dart';
 

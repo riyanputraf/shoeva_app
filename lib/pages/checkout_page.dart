@@ -2,14 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo_app/providers/cart_provider.dart';
+import 'package:shamo_app/providers/transaction_provider.dart';
 import 'package:shamo_app/theme.dart';
 import 'package:shamo_app/widgets/checkout_card.dart';
+
+import '../providers/auth_provider.dart';
 
 class CheckoutPage extends StatelessWidget {
   const CheckoutPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TransactionProvider transactionProvider =
+        Provider.of<TransactionProvider>(context);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+
+    handleCheckout() async {
+      if (await transactionProvider.checkout(authProvider.user.token,
+          cartProvider.carts, cartProvider.totalPrice())) {
+        cartProvider.carts = [];
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/checkout-success', (route) => false);
+      }
+    }
+
     PreferredSizeWidget header() {
       return AppBar(
         backgroundColor: bgColor1,
@@ -60,7 +77,9 @@ class CheckoutPage extends StatelessWidget {
                     return Column(
                       children: cartProvider.carts
                           .map(
-                            (cart) => CheckoutCard(cart: cart,),
+                            (cart) => CheckoutCard(
+                              cart: cart,
+                            ),
                           )
                           .toList(),
                     );
@@ -294,10 +313,7 @@ class CheckoutPage extends StatelessWidget {
               vertical: defaultMargin.h,
             ),
             child: TextButton(
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, '/checkout-success', (route) => false);
-              },
+              onPressed: handleCheckout,
               style: TextButton.styleFrom(
                   padding: EdgeInsets.symmetric(
                     vertical: 13.h,
