@@ -1,9 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shamo_app/models/cart_model.dart';
 import 'package:shamo_app/theme.dart';
 
+import '../utils/url_util.dart';
+
 class CheckoutCard extends StatelessWidget {
-  const CheckoutCard({super.key});
+  const CheckoutCard({super.key, required this.cart});
+
+  final CartModel cart;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +29,18 @@ class CheckoutCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              'assets/image_shoes.png',
+            child: CachedNetworkImage(
+              imageUrl: updateLocalhostUrl(cart.product.galleries[0].url),
               width: 60.w,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => Center(
+                child: CircularProgressIndicator(),
+              ),
+              errorWidget: (context, url, error) => Icon(
+                Icons.image_not_supported,
+                size: 150.w,
+                color: Colors.grey,
+              ),
             ),
           ),
           SizedBox(
@@ -36,7 +51,7 @@ class CheckoutCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Terrex Urban Low',
+                  cart.product.name,
                   style: primaryTextStyle.copyWith(
                     fontSize: 14.sp,
                     fontWeight: semibold,
@@ -47,7 +62,7 @@ class CheckoutCard extends StatelessWidget {
                   height: 2.h,
                 ),
                 Text(
-                  '\$143,98',
+                  '\$${cart.product.price}',
                   style: priceTextStyle.copyWith(fontSize: 14.sp),
                 ),
               ],
@@ -57,7 +72,7 @@ class CheckoutCard extends StatelessWidget {
             height: 12.h,
           ),
           Text(
-            '2 Items',
+            '${cart.quantity} Items',
             style: secondaryTextStyle.copyWith(
               fontSize: 12.sp,
             ),

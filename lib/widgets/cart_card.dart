@@ -14,7 +14,6 @@ class CartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     CartProvider cartProvider = Provider.of<CartProvider>(context);
 
     return Container(
@@ -35,20 +34,21 @@ class CartCard extends StatelessWidget {
           Row(
             children: [
               ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: CachedNetworkImage(
-                    imageUrl: updateLocalhostUrl(cart.product.galleries[0].url),
-                    width: 60.w,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    errorWidget: (context, url, error) => Icon(
-                      Icons.image_not_supported,
-                      size: 150.w,
-                      color: Colors.grey,
-                    ),
-                  )),
+                borderRadius: BorderRadius.circular(12),
+                child: CachedNetworkImage(
+                  imageUrl: updateLocalhostUrl(cart.product.galleries[0].url),
+                  width: 60.w,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  errorWidget: (context, url, error) => Icon(
+                    Icons.image_not_supported,
+                    size: 150.w,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
               SizedBox(
                 width: 12.w,
               ),
@@ -76,7 +76,7 @@ class CartCard extends StatelessWidget {
               Column(
                 children: [
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       cartProvider.addQuantity(cart.id);
                     },
                     child: Image.asset(
@@ -98,7 +98,7 @@ class CartCard extends StatelessWidget {
                     height: 2.h,
                   ),
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       cartProvider.reduceQuantity(cart.id);
                     },
                     child: Image.asset(
@@ -114,7 +114,7 @@ class CartCard extends StatelessWidget {
             height: 12.h,
           ),
           GestureDetector(
-            onTap: (){
+            onTap: () {
               cartProvider.removeCart(cart.id);
             },
             child: Row(

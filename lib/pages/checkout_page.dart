@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo_app/providers/cart_provider.dart';
 import 'package:shamo_app/theme.dart';
 import 'package:shamo_app/widgets/checkout_card.dart';
 
@@ -53,8 +55,17 @@ class CheckoutPage extends StatelessWidget {
                     fontSize: 16.sp,
                   ),
                 ),
-                CheckoutCard(),
-                CheckoutCard(),
+                Consumer<CartProvider>(
+                  builder: (context, cartProvider, child) {
+                    return Column(
+                      children: cartProvider.carts
+                          .map(
+                            (cart) => CheckoutCard(cart: cart,),
+                          )
+                          .toList(),
+                    );
+                  },
+                )
               ],
             ),
           ),
@@ -149,119 +160,123 @@ class CheckoutPage extends StatelessWidget {
           ),
 
           /// Note Payment Summary
-          Container(
-            margin: EdgeInsets.only(
-              top: defaultMargin.h,
-            ),
-            decoration: BoxDecoration(
-              color: bgColor4,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            padding: EdgeInsets.all(20.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Payment Summary',
-                  style: primaryTextStyle.copyWith(
-                    fontWeight: medium,
-                    fontSize: 16.sp,
-                  ),
+          Consumer<CartProvider>(
+            builder: (context, cartProvider, child) {
+              return Container(
+                margin: EdgeInsets.only(
+                  top: defaultMargin.h,
                 ),
-                SizedBox(
-                  height: 12.h,
+                decoration: BoxDecoration(
+                  color: bgColor4,
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                padding: EdgeInsets.all(20.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Product Quantity',
-                      style: secondaryTextStyle.copyWith(
-                        fontSize: 12.sp,
-                      ),
-                    ),
-                    Text(
-                      '2 Items',
+                      'Payment Summary',
                       style: primaryTextStyle.copyWith(
-                        fontSize: 14.sp,
                         fontWeight: medium,
+                        fontSize: 16.sp,
                       ),
                     ),
+                    SizedBox(
+                      height: 12.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Product Quantity',
+                          style: secondaryTextStyle.copyWith(
+                            fontSize: 12.sp,
+                          ),
+                        ),
+                        Text(
+                          '${cartProvider.totalItem()} Items',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 14.sp,
+                            fontWeight: medium,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 12.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Product Price',
+                          style: secondaryTextStyle.copyWith(
+                            fontSize: 12.sp,
+                          ),
+                        ),
+                        Text(
+                          '\$${cartProvider.totalPrice()}',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 14.sp,
+                            fontWeight: medium,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 12.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Shipping',
+                          style: secondaryTextStyle.copyWith(
+                            fontSize: 12.sp,
+                          ),
+                        ),
+                        Text(
+                          'Free',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 14.sp,
+                            fontWeight: medium,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 12.h,
+                    ),
+                    Divider(
+                      thickness: 1,
+                      color: subtitleTextColor,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Total',
+                          style: priceTextStyle.copyWith(
+                            fontSize: 14.sp,
+                            fontWeight: semibold,
+                          ),
+                        ),
+                        Text(
+                          '\$${cartProvider.totalPrice()}',
+                          style: priceTextStyle.copyWith(
+                            fontSize: 14.sp,
+                            fontWeight: semibold,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
-                SizedBox(
-                  height: 12.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Product Price',
-                      style: secondaryTextStyle.copyWith(
-                        fontSize: 12.sp,
-                      ),
-                    ),
-                    Text(
-                      '\$575.96',
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 14.sp,
-                        fontWeight: medium,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 12.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Shipping',
-                      style: secondaryTextStyle.copyWith(
-                        fontSize: 12.sp,
-                      ),
-                    ),
-                    Text(
-                      'Free',
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 14.sp,
-                        fontWeight: medium,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 12.h,
-                ),
-                Divider(
-                  thickness: 1,
-                  color: subtitleTextColor,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total',
-                      style: priceTextStyle.copyWith(
-                        fontSize: 14.sp,
-                        fontWeight: semibold,
-                      ),
-                    ),
-                    Text(
-                      'Free',
-                      style: priceTextStyle.copyWith(
-                        fontSize: 14.sp,
-                        fontWeight: semibold,
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
+              );
+            },
           ),
 
           /// Note checkout button
