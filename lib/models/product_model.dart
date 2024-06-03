@@ -50,3 +50,18 @@ class ProductModel {
         "updated_at": updatedAt.toString(),
       };
 }
+
+class UnintializedProductModel extends ProductModel {
+  UnintializedProductModel()
+      : super(
+          id: 0,
+          name: '',
+          price: 0.0,
+          description: '',
+          tags: '',
+          category: CategoryModel(id: 0, name: ''),
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+          galleries: [],
+        );
+}

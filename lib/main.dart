@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shamo_app/models/product_model.dart';
 import 'package:shamo_app/pages/cart_page.dart';
 import 'package:shamo_app/pages/checkout_page.dart';
 import 'package:shamo_app/pages/checkout_succes_page.dart';
@@ -62,7 +63,6 @@ class MyApp extends StatelessWidget {
                 '/sign-in': (context) => SignInPage(),
                 '/sign-up': (context) => SignUpPage(),
                 '/home': (context) => MainPage(),
-                '/detail-chat': (context) => DetailChatPage(),
                 '/edit-profile': (context) => EditProfilePage(),
                 '/cart': (context) => CartPage(),
                 '/checkout': (context) => CheckoutPage(),
