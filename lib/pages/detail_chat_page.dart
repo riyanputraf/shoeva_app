@@ -1,12 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import 'package:shamo_app/models/product_model.dart';
 import 'package:shamo_app/theme.dart';
 import 'package:shamo_app/widgets/chat_buble.dart';
 
-import '../providers/product_provider.dart';
 import '../utils/url_util.dart';
 
 class DetailChatPage extends StatefulWidget {
