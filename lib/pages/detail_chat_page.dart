@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo_app/models/product_model.dart';
+import 'package:shamo_app/providers/auth_provider.dart';
+import 'package:shamo_app/services/message_service.dart';
 import 'package:shamo_app/theme.dart';
 import 'package:shamo_app/widgets/chat_buble.dart';
 
@@ -17,8 +20,27 @@ class DetailChatPage extends StatefulWidget {
 }
 
 class _DetailChatPageState extends State<DetailChatPage> {
+  TextEditingController messageController = TextEditingController(text: '');
+
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleAddMessage() async{
+      await MessageService().addMessage(
+        authProvider.user,
+        true,
+        messageController.text,
+        widget.product,
+      );
+
+
+      setState(() {
+        widget.product = UnintializedProductModel();
+        messageController.text = '';
+      });
+    }
+
     Widget productPreview() {
       return Container(
         width: 225.w,
@@ -86,7 +108,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
               width: 20.w,
             ),
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 setState(() {
                   widget.product = UnintializedProductModel();
                 });
@@ -108,7 +130,9 @@ class _DetailChatPageState extends State<DetailChatPage> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            widget.product is UnintializedProductModel ? SizedBox() : productPreview(),
+            widget.product is UnintializedProductModel
+                ? SizedBox()
+                : productPreview(),
             Row(
               children: [
                 Expanded(
@@ -123,6 +147,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: messageController,
                         style: primaryTextStyle.copyWith(
                           fontSize: 14.sp,
                         ),
@@ -137,9 +162,12 @@ class _DetailChatPageState extends State<DetailChatPage> {
                 SizedBox(
                   width: 20.w,
                 ),
-                Image.asset(
-                  'assets/button_send.png',
-                  width: 45.w,
+                GestureDetector(
+                  onTap: handleAddMessage,
+                  child: Image.asset(
+                    'assets/button_send.png',
+                    width: 45.w,
+                  ),
                 )
               ],
             ),
@@ -175,7 +203,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
           backgroundColor: bgColor1,
           centerTitle: false,
           leading: GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.pop(context);
             },
             child: Icon(
