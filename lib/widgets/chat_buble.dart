@@ -1,15 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shamo_app/models/product_model.dart';
 import 'package:shamo_app/theme.dart';
 
+import '../utils/url_util.dart';
+
 class ChatBubble extends StatelessWidget {
   const ChatBubble(
-      {super.key,
-      this.text = '',
-      this.isSender = false,
-      this.product});
+      {super.key, this.text = '', this.isSender = false, this.product});
 
   final String text;
   final bool isSender;
@@ -39,9 +39,18 @@ class ChatBubble extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(
-                    'assets/image_shoes.png',
-                    width: 70.w,
+                  child: CachedNetworkImage(
+                    imageUrl: updateLocalhostUrl(product!.galleries[0].url),
+                    width: 60.w,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) => Icon(
+                      Icons.image_not_supported,
+                      size: 150.w,
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -52,7 +61,7 @@ class ChatBubble extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'COURT VISION 2.0 SHOES',
+                        product!.name,
                         style: primaryTextStyle.copyWith(
                           fontSize: 14.sp,
                         ),
@@ -61,7 +70,7 @@ class ChatBubble extends StatelessWidget {
                         height: 4.h,
                       ),
                       Text(
-                        '\$57,15',
+                        '\$${product!.price}',
                         style: priceTextStyle.copyWith(
                           fontWeight: medium,
                           fontSize: 14.sp,
