@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shamo_app/models/message_model.dart';
 import 'package:shamo_app/models/product_model.dart';
 import 'package:shamo_app/providers/auth_provider.dart';
 import 'package:shamo_app/services/message_service.dart';
@@ -26,14 +27,13 @@ class _DetailChatPageState extends State<DetailChatPage> {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
-    handleAddMessage() async{
+    handleAddMessage() async {
       await MessageService().addMessage(
         authProvider.user,
         true,
         messageController.text,
         widget.product,
       );
-
 
       setState(() {
         widget.product = UnintializedProductModel();
@@ -177,22 +177,38 @@ class _DetailChatPageState extends State<DetailChatPage> {
     }
 
     Widget content() {
-      return ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: defaultMargin.w,
-        ),
-        children: [
-          ChatBubble(
-            text: 'Hi, This item is still available?',
-            isSender: true,
-            hasProduct: true,
-          ),
-          ChatBubble(
-            text: 'Good night, This item is only available in size 42 and 43',
-            isSender: false,
-          ),
-        ],
-      );
+      return StreamBuilder<List<MessageModel>>(
+          stream: MessageService()
+              .getMessagesByUserId(userId: authProvider.user.id),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text('Error: ${snapshot.error}'),
+              );
+            } else if (snapshot.hasData) {
+              return ListView(
+                padding: EdgeInsets.symmetric(
+                  horizontal: defaultMargin.w,
+                ),
+                children: snapshot.data!
+                    .map(
+                      (MessageModel message) => ChatBubble(
+                        isSender: message.isFromUser,
+                        text: message.message,
+                      ),
+                    )
+                    .toList(),
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          });
     }
 
     return Scaffold(

@@ -2,7 +2,7 @@ import 'package:shamo_app/models/product_model.dart';
 
 class MessageModel {
   String message;
-  String userId;
+  int userId;
   String username;
   String userImage;
   bool isFromUser;
@@ -27,7 +27,7 @@ class MessageModel {
         username: json["username"] ?? '',
         userImage: json["userImage"] ?? '',
         isFromUser: json["isFromUser"] ?? false,
-        product: json["product"] == {}
+        product: json["product"].isEmpty
             ? UnintializedProductModel()
             : ProductModel.fromJson(json["product"]),
         createdAt: DateTime.parse(json["createdAt"]),
