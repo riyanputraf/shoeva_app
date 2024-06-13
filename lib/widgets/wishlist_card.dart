@@ -39,7 +39,7 @@ class WishlistCard extends StatelessWidget {
               width: 60.w,
               height: 60.h,
               fit: BoxFit.cover,
-              placeholder: (context, url) => Center(
+              placeholder: (context, url) => const Center(
                 child: CircularProgressIndicator(),
               ),
               errorWidget: (context, url, error) => Icon(
@@ -57,7 +57,7 @@ class WishlistCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${product.name}',
+                  product.name,
                   style: primaryTextStyle.copyWith(
                     fontSize: 14.sp,
                     fontWeight: semibold,

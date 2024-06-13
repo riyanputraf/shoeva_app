@@ -82,7 +82,7 @@ class CheckoutSuccessPage extends StatelessWidget {
               child: TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
-                    backgroundColor: Color(0xff39374B),
+                    backgroundColor: const Color(0xff39374B),
                     padding: EdgeInsets.symmetric(
                       vertical: 10.h,
                       horizontal: 40.w,
@@ -95,7 +95,7 @@ class CheckoutSuccessPage extends StatelessWidget {
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
                     fontSize: 16.sp,
-                    color: Color(0xffB7B6BF),
+                    color: const Color(0xffB7B6BF),
                   ),
                 ),
               ),

@@ -9,7 +9,7 @@ import 'package:shamo_app/theme.dart';
 import 'package:shamo_app/widgets/chat_tile.dart';
 
 class ChatPage extends StatelessWidget {
-  ChatPage({super.key});
+  const ChatPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class ChatPage extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              Container(
+              SizedBox(
                 height: 44.h,
                 child: TextButton(
                   onPressed: () {
@@ -103,7 +103,7 @@ class ChatPage extends StatelessWidget {
               .getMessagesByUserId(userId: authProvider.user.id),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (snapshot.hasError) {
@@ -111,7 +111,7 @@ class ChatPage extends StatelessWidget {
                 child: Text('Error: ${snapshot.error}'),
               );
             } else if (snapshot.hasData) {
-              if (snapshot.data!.length == 0) {
+              if (snapshot.data!.isEmpty) {
                 return emptyChat();
               }
 

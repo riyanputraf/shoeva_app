@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import '../widgets/loading_button.dart';
 
 class SignUpPage extends StatefulWidget {
-  SignUpPage({super.key});
+  const SignUpPage({super.key});
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -44,7 +44,7 @@ class _SignUpPageState extends State<SignUpPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: alertColor,
-            content: Text(
+            content: const Text(
               'Register Failed',
               textAlign: TextAlign.center,
             ),
@@ -385,8 +385,8 @@ class _SignUpPageState extends State<SignUpPage> {
               usernameInput(),
               emailInput(),
               passwordInput(),
-              isLoading ? LoadingButton() : signUpButton(),
-              Spacer(),
+              isLoading ? const LoadingButton() : signUpButton(),
+              const Spacer(),
               footer(),
             ],
           ),

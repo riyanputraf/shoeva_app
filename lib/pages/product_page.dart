@@ -12,7 +12,7 @@ import '../models/product_model.dart';
 import '../utils/url_util.dart';
 
 class ProductPage extends StatefulWidget {
-  ProductPage({super.key, required this.product});
+  const ProductPage({super.key, required this.product});
 
   final ProductModel product;
 
@@ -49,7 +49,7 @@ class _ProductPageState extends State<ProductPage> {
     Future<void> showSuccesDialog() async {
       return showDialog(
         context: context,
-        builder: (BuildContext context) => Container(
+        builder: (BuildContext context) => SizedBox(
           width: MediaQuery.of(context).size.width - (2 * defaultMargin),
           child: AlertDialog(
             backgroundColor: bgColor3,
@@ -98,7 +98,7 @@ class _ProductPageState extends State<ProductPage> {
                   SizedBox(
                     height: 20.h,
                   ),
-                  Container(
+                  SizedBox(
                     width: 154.w,
                     height: 44.h,
                     child: TextButton(
@@ -134,7 +134,7 @@ class _ProductPageState extends State<ProductPage> {
         margin: EdgeInsets.symmetric(horizontal: 2.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: currentIndex == index ? primaryColor : Color(0xffC4C4C4),
+          color: currentIndex == index ? primaryColor : const Color(0xffC4C4C4),
         ),
       );
     }
@@ -191,7 +191,7 @@ class _ProductPageState extends State<ProductPage> {
                     imageUrl: updateLocalhostUrl(image.url),
                     width: 310.w,
                     fit: BoxFit.cover,
-                    placeholder: (context, url) => Center(
+                    placeholder: (context, url) => const Center(
                       child: CircularProgressIndicator(),
                     ),
                     errorWidget: (context, url, error) => Icon(
@@ -255,7 +255,7 @@ class _ProductPageState extends State<ProductPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${widget.product.name}',
+                          widget.product.name,
                           style: primaryTextStyle.copyWith(
                             fontWeight: semibold,
                             fontSize: 18.sp,
@@ -364,7 +364,7 @@ class _ProductPageState extends State<ProductPage> {
                     height: 12.h,
                   ),
                   Text(
-                    '${widget.product.description}',
+                    widget.product.description,
                     style: subtitleTextStyle.copyWith(
                       fontWeight: light,
                       fontSize: 14.sp,
@@ -424,7 +424,7 @@ class _ProductPageState extends State<ProductPage> {
                     child: Container(
                       width: 54.w,
                       height: 54.h,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage('assets/button_chat.png'),
                         ),
@@ -444,7 +444,7 @@ class _ProductPageState extends State<ProductPage> {
                     width: 16.w,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 54.h,
                       child: TextButton(
                         onPressed: () {

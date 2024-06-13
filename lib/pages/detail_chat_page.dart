@@ -65,7 +65,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                 imageUrl: updateLocalhostUrl(widget.product.galleries[0].url),
                 width: 54.w,
                 fit: BoxFit.cover,
-                placeholder: (context, url) => Center(
+                placeholder: (context, url) => const Center(
                   child: CircularProgressIndicator(),
                 ),
                 errorWidget: (context, url, error) => Icon(
@@ -131,7 +131,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             widget.product is UnintializedProductModel
-                ? SizedBox()
+                ? const SizedBox()
                 : productPreview(),
             Row(
               children: [
@@ -182,7 +182,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
               .getMessagesByUserId(userId: authProvider.user.id),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (snapshot.hasError) {
@@ -205,7 +205,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                     .toList(),
               );
             } else {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
@@ -215,7 +215,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
     return Scaffold(
       backgroundColor: bgColor3,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(70),
+        preferredSize: const Size.fromHeight(70),
         child: AppBar(
           backgroundColor: bgColor1,
           centerTitle: false,

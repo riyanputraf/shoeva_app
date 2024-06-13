@@ -23,7 +23,7 @@ class LoadingButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               width: 16.w,
               height: 16.h,
               child: CircularProgressIndicator(

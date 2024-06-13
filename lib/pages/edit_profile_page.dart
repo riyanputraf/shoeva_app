@@ -66,7 +66,7 @@ class EditProfilePage extends StatelessWidget {
                 fontSize: 16.sp,
               ),
               decoration: InputDecoration(
-                  hintText: '${user.name}',
+                  hintText: user.name,
                   hintStyle: primaryTextStyle.copyWith(
                     fontSize: 16.sp,
                   ),
@@ -128,7 +128,7 @@ class EditProfilePage extends StatelessWidget {
                 fontSize: 16.sp,
               ),
               decoration: InputDecoration(
-                  hintText: '${user.email}',
+                  hintText: user.email,
                   hintStyle: primaryTextStyle.copyWith(
                     fontSize: 16.sp,
                   ),
@@ -155,7 +155,7 @@ class EditProfilePage extends StatelessWidget {
               width: 100.w,
               height: 100.h,
               margin: EdgeInsets.only(top: defaultMargin),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   fit: BoxFit.fill,

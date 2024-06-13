@@ -7,7 +7,7 @@ import '../models/message_model.dart';
 import '../pages/detail_chat_page.dart';
 
 class ChatTile extends StatelessWidget {
-  ChatTile({super.key, required this.message});
+  const ChatTile({super.key, required this.message});
 
   final MessageModel message;
 
@@ -68,7 +68,7 @@ class ChatTile extends StatelessWidget {
               ],
             ),
             SizedBox(height: 12.h,),
-            Divider(
+            const Divider(
               thickness: 2,
               color: Color(0xff2B2939),
             )

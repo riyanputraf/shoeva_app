@@ -68,7 +68,7 @@ class CartPage extends StatelessWidget {
             SizedBox(
               height: 20.h,
             ),
-            Container(
+            SizedBox(
               height: 44.h,
               child: TextButton(
                 onPressed: () {
@@ -126,9 +126,9 @@ class CartPage extends StatelessWidget {
       return Consumer<CartProvider>(
         builder: (context, cartProvider, child) {
           if (cartProvider.carts.isEmpty) {
-            return SizedBox();
+            return const SizedBox();
           } else {
-            return Container(
+            return SizedBox(
               height: 180.h,
               child: Column(
                 children: [

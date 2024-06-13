@@ -33,7 +33,7 @@ class CheckoutCard extends StatelessWidget {
               imageUrl: updateLocalhostUrl(cart.product.galleries[0].url),
               width: 60.w,
               fit: BoxFit.cover,
-              placeholder: (context, url) => Center(
+              placeholder: (context, url) => const Center(
                 child: CircularProgressIndicator(),
               ),
               errorWidget: (context, url, error) => Icon(

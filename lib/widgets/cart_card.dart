@@ -8,7 +8,7 @@ import 'package:shamo_app/theme.dart';
 import 'package:shamo_app/utils/url_util.dart';
 
 class CartCard extends StatelessWidget {
-  CartCard({super.key, required this.cart});
+  const CartCard({super.key, required this.cart});
 
   final CartModel cart;
 
@@ -39,7 +39,7 @@ class CartCard extends StatelessWidget {
                   imageUrl: updateLocalhostUrl(cart.product.galleries[0].url),
                   width: 60.w,
                   fit: BoxFit.cover,
-                  placeholder: (context, url) => Center(
+                  placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),
                   errorWidget: (context, url, error) => Icon(
@@ -57,7 +57,7 @@ class CartCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${cart.product.name}',
+                      cart.product.name,
                       style: primaryTextStyle.copyWith(
                         fontWeight: semibold,
                         fontSize: 14.sp,

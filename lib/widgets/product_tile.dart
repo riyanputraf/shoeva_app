@@ -40,7 +40,7 @@ class ProductTile extends StatelessWidget {
                 width: 120.w,
                 height: 120.h,
                 fit: BoxFit.cover,
-                placeholder: (context, url) => Center(
+                placeholder: (context, url) => const Center(
                   child: CircularProgressIndicator(),
                 ),
                 errorWidget: (context, url, error) => Icon(
@@ -67,7 +67,7 @@ class ProductTile extends StatelessWidget {
                     height: 6.h,
                   ),
                   Text(
-                    '${product.name}',
+                    product.name,
                     style: primaryTextStyle.copyWith(
                       fontWeight: semibold,
                       fontSize: 16.sp,

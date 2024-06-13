@@ -8,7 +8,7 @@ import '../pages/product_page.dart';
 import '../utils/url_util.dart';
 
 class ProductCard extends StatelessWidget {
-  ProductCard({super.key, required this.product});
+  const ProductCard({super.key, required this.product});
 
   final ProductModel product;
 
@@ -17,9 +17,6 @@ class ProductCard extends StatelessWidget {
     // convert url image from localhost to 10.0.2.2
     String imageUrl = updateLocalhostUrl(product.galleries[0].url);
 
-    // Print the URL to the console for debugging
-    print(imageUrl);
-    print('Ini galleris: ' + product.galleries[0].url);
 
     return GestureDetector(
       onTap: () {
@@ -38,7 +35,7 @@ class ProductCard extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Color(0xffECEDEF),
+          color: const Color(0xffECEDEF),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +48,7 @@ class ProductCard extends StatelessWidget {
               width: 215.w,
               height: 150.h,
               fit: BoxFit.cover,
-              placeholder: (context, url) => Center(
+              placeholder: (context, url) => const Center(
                 child: CircularProgressIndicator(),
               ),
               errorWidget: (context, url, error) => Icon(

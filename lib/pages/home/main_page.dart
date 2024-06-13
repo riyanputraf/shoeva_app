@@ -41,7 +41,7 @@ class _MainPageState extends State<MainPage> {
           top: Radius.circular(30.w),
         ),
         child: BottomAppBar(
-          shape: CircularNotchedRectangle(),
+          shape: const CircularNotchedRectangle(),
           notchMargin: 12.w,
           clipBehavior: Clip.antiAlias,
           child: BottomNavigationBar(
@@ -63,7 +63,7 @@ class _MainPageState extends State<MainPage> {
                     width: 21.w,
                     color: pageProvider.currentIndex == 0
                         ? primaryColor
-                        : Color(0xff808191),
+                        : const Color(0xff808191),
                   ),
                 ),
                 label: '',
@@ -79,7 +79,7 @@ class _MainPageState extends State<MainPage> {
                     width: 20.w,
                     color: pageProvider.currentIndex == 1
                         ? primaryColor
-                        : Color(0xff808191),
+                        : const Color(0xff808191),
                   ),
                 ),
                 label: '',
@@ -95,7 +95,7 @@ class _MainPageState extends State<MainPage> {
                     width: 20.w,
                     color: pageProvider.currentIndex == 2
                         ? primaryColor
-                        : Color(0xff808191),
+                        : const Color(0xff808191),
                   ),
                 ),
                 label: '',
@@ -111,7 +111,7 @@ class _MainPageState extends State<MainPage> {
                     width: 18.w,
                     color: pageProvider.currentIndex == 3
                         ? primaryColor
-                        : Color(0xff808191),
+                        : const Color(0xff808191),
                   ),
                 ),
                 label: '',
@@ -129,9 +129,9 @@ class _MainPageState extends State<MainPage> {
         case 1:
           return ChatPage();
         case 2:
-          return WishlistPage();
+          return const WishlistPage();
         case 3:
-          return ProfilePage();
+          return const ProfilePage();
         default:
           return HomePage();
       }

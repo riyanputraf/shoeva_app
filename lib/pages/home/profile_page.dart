@@ -129,7 +129,7 @@ class ProfilePage extends StatelessWidget {
               ),
               menuItem('Your Orders'),
               menuItem('Help'),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Text(

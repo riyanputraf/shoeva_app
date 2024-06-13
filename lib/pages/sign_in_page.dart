@@ -37,7 +37,7 @@ class _SignInPageState extends State<SignInPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: alertColor,
-            content: Text(
+            content: const Text(
               'Login Failed',
               textAlign: TextAlign.center,
             ),
@@ -260,8 +260,8 @@ class _SignInPageState extends State<SignInPage> {
               header(),
               emailInput(),
               passwordInput(),
-              isLoading ? LoadingButton() : signInButton(),
-              Spacer(),
+              isLoading ? const LoadingButton() : signInButton(),
+              const Spacer(),
               footer(),
             ],
           ),

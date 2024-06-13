@@ -65,7 +65,7 @@ class WishlistPage extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              Container(
+              SizedBox(
                 height: 44.h,
                 child: TextButton(
                   onPressed: () {

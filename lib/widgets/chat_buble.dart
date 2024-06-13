@@ -28,8 +28,8 @@ class ChatBubble extends StatelessWidget {
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(isSender ? 12 : 0),
             topRight: Radius.circular(isSender ? 0 : 12),
-            bottomLeft: Radius.circular(12),
-            bottomRight: Radius.circular(12),
+            bottomLeft: const Radius.circular(12),
+            bottomRight: const Radius.circular(12),
           ),
           color: isSender ? bgColor5 : bgColor4,
         ),
@@ -43,7 +43,7 @@ class ChatBubble extends StatelessWidget {
                     imageUrl: updateLocalhostUrl(product!.galleries[0].url),
                     width: 60.w,
                     fit: BoxFit.cover,
-                    placeholder: (context, url) => Center(
+                    placeholder: (context, url) => const Center(
                       child: CircularProgressIndicator(),
                     ),
                     errorWidget: (context, url, error) => Icon(
@@ -140,7 +140,7 @@ class ChatBubble extends StatelessWidget {
         crossAxisAlignment:
             isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          product is UnintializedProductModel ? SizedBox() : productPreview(),
+          product is UnintializedProductModel ? const SizedBox() : productPreview(),
           Row(
             mainAxisAlignment:
                 isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
@@ -158,8 +158,8 @@ class ChatBubble extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(isSender ? 12 : 0),
                       topRight: Radius.circular(isSender ? 0 : 12),
-                      bottomLeft: Radius.circular(12),
-                      bottomRight: Radius.circular(12),
+                      bottomLeft: const Radius.circular(12),
+                      bottomRight: const Radius.circular(12),
                     ),
                     color: isSender ? bgColor5 : bgColor4,
                   ),
