@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo_app/models/message_model.dart';
 import 'package:shamo_app/providers/auth_provider.dart';
+import 'package:shamo_app/providers/page_provider.dart';
 import 'package:shamo_app/services/message_service.dart';
 import 'package:shamo_app/theme.dart';
 import 'package:shamo_app/widgets/chat_tile.dart';
@@ -13,6 +14,7 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
 
     Widget header() {
       return AppBar(
@@ -67,7 +69,9 @@ class ChatPage extends StatelessWidget {
               Container(
                 height: 44.h,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    pageProvider.currentIndex = 0;
+                  },
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.symmetric(
                       horizontal: 24.w,
