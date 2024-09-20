@@ -1,10 +1,10 @@
-# Shamo App
+# Shoeva App
 
 ![App Screenshot](images/project_cover/project_cover.png)
 
 ## Description
 
-Shamo App is an e-commerce application for selling shoes built using Flutter. This application uses Laravel as a backend for storing shoes data and Firebase for storing and message management.
+Shoeva App is an e-commerce application for selling shoes built using Flutter. This application uses Laravel as a backend for storing shoes data and Firebase for storing and message management.
 
 ## Feature
 
